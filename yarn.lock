@@ -136,6 +136,18 @@
     magic-string "^0.19.0"
     source-map "^0.5.6"
 
+"@types/angular-material@^1.1.45":
+  version "1.1.45"
+  resolved "@types-angular-material-1.1.45.tgz#2f661a7026260a20fa72cae11a9c892c85e077f2"
+  dependencies:
+    "@types/angular" "*"
+
+"@types/angular@*":
+  version "1.6.9"
+  resolved "@types-angular-1.6.9.tgz#71558dcb26124c5255db78d608a6745cf0739caf"
+  dependencies:
+    "@types/jquery" "*"
+
 "@types/firebase@^2.4.31":
   version "2.4.31"
   resolved "@types-firebase-2.4.31.tgz#8a8dfdb602bcd790b99691701f872124a14cd778"
@@ -147,6 +159,10 @@
 "@types/jasmine@2.5.38":
   version "2.5.38"
   resolved "@types-jasmine-2.5.38.tgz#a4379124c4921d4e21de54ec74669c9e9b356717"
+
+"@types/jquery@*":
+  version "2.0.41"
+  resolved "@types-jquery-2.0.41.tgz#b87ba051011f99edbe586d8f97282e7786e01a6d"
 
 "@types/node@^6.0.46", "@types/node@~6.0.60":
   version "6.0.65"

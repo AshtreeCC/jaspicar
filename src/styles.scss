@@ -1,7 +1,11 @@
 /* Global imports */
 @import url("~https://fonts.googleapis.com/icon?family=Material+Icons");
 @import url("~https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic");
-@import url("~@angular/material/core/theming/prebuilt/deeppurple-amber.css");
+
+/* Theme */
+@import url("~@angular/material/core/theming/prebuilt/pink-bluegrey.css");
+//@import url("~./assets/css/themes/bluegrey-deeporange.scss");
+//@import url("~./assets/css/themes/deeppurple-amber.css");
 
 /* Local imports */
 @import url("~./assets/css/mixins.scss");

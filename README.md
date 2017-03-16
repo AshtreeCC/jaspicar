@@ -2,6 +2,11 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0-rc.2.
 
+## But, DO NOT CLONE
+
+Copy the files and run `yarn`.
+
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
@@ -28,7 +33,7 @@ Before running the tests make sure you are serving the app via `ng serve`.
 
 ## Test on a  virtual live server (Not a part of NG-CLI)
 
-Run `npm run live` to start a live server on localhost:8000.
+Run `npm run live` to start a live server on `http://localhost:8000`.
 
 ## Further help
 

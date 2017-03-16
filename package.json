@@ -36,6 +36,7 @@
   "devDependencies": {
     "@angular/cli": "1.0.0-rc.2",
     "@angular/compiler-cli": "^2.4.0",
+    "@types/angular-material": "^1.1.45",
     "@types/firebase": "^2.4.31",
     "@types/hammerjs": "^2.0.34",
     "@types/jasmine": "2.5.38",
