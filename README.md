@@ -1,4 +1,4 @@
-# NgAfPwaSeed
+# Angular2 Firebase Progressive Web App seed
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0-rc.2.
 
@@ -14,6 +14,9 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
+## Precache (Not a part of NG-CLI, yet)
+Run `npm run precache` to use sw-precache to create a service worker and store assets. Check `/swconfig.json` for files to cache.
+
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
@@ -22,6 +25,10 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 Before running the tests make sure you are serving the app via `ng serve`.
+
+## Test on a  virtual live server (Not a part of NG-CLI)
+
+Run `npm run live` to start a live server on localhost:8000.
 
 ## Further help
 
