@@ -1,0 +1,17 @@
+/* Useful common mixins */
+@mixin background-opacity($color, $opacity: 0) {
+    background: rgba($color, $opacity);
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Useful common classes */
+.flex-stretch {
+  // This fills the remaining space, by using flexbox. 
+  // Every toolbar row uses a flexbox row layout.
+  flex: 1 1 auto;
+ }

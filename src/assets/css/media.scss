@@ -1,0 +1,18 @@
+/* XS */
+@media(max-width: 321px) {
+    * {
+        font-size: 0.98em;
+    }
+
+    button[md-mini-fab] {
+        width: 32px;
+        height: 32px;
+        
+        md-icon {
+            line-height: 18px !important;
+            font-size: 20px;
+        }
+
+    }
+
+ }

@@ -1,1 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global imports */
+@import url("~https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url("~https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic");
+@import url("~@angular/material/core/theming/prebuilt/deeppurple-amber.css");
+
+/* Local imports */
+@import url("~./assets/css/mixins.scss");
+@import url("~./assets/css/loading.scss");
+@import url("~./assets/css/index.scss");
+@import url("~./assets/css/media.scss");
