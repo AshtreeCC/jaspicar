@@ -1,0 +1,19 @@
+a {
+    .link & {
+        &,
+        &:active,
+        &:visited {
+            color: #DEF;
+            text-decoration: none;
+            cursor: pointer;
+        },
+        &:hover {
+            color: #FFF;
+        }
+
+    }       
+}
+
+md-toolbar {
+    box-shadow: 0 0 10px 2px rgba(0,0,0,0.75);
+}
