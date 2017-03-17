@@ -1,20 +1,62 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+// angular
+import { BrowserModule }                from '@angular/platform-browser';
+import { NgModule }                     from '@angular/core';
+import { FormsModule }                  from '@angular/forms';
+import { HttpModule }                   from '@angular/http';
+import { MaterialModule }               from '@angular/material';
+import { FlexLayoutModule }             from '@angular/flex-layout';
+import { RouterModule }                 from '@angular/router';
 
-import { AppComponent } from './app.component';
+// libraries
+import { AngularFireModule }            from 'angularfire2';
+import { AngularFireOfflineModule }     from 'angularfire2-offline';
+
+// modules
+import { AuthModule }                   from './auth/auth.module';
+
+// services
+import { AuthService, AuthGuard }       from './auth/auth.service';
+
+// app
+import { AppComponent }                 from './app.component';
+import { APP_LAYOUT_COMPONENTS }        from './layouts/index';
+//import { APP_AUTH_COMPONENTS }          from './auth/index';
+import { APP_PAGE_COMPONENTS }          from './pages/index';
+
+// pipes
+import { FirstnamePipe }                from "./pipes/firstname.pipe";
+
+// misc
+import { APP_ROUTES }                   from './app.routes';
+import { FIREBASE_CONFIG }              from './app.config';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    APP_LAYOUT_COMPONENTS,
+    //APP_AUTH_COMPONENTS,
+    APP_PAGE_COMPONENTS,
+    FirstnamePipe,
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot(APP_ROUTES),
+    AngularFireModule.initializeApp(FIREBASE_CONFIG),
+    AngularFireOfflineModule,
+    MaterialModule.forRoot(),
+    FlexLayoutModule.forRoot()
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+      AuthService,
+      AuthGuard
+  ],
+  bootstrap: [
+    AppComponent
+  ],
+  entryComponents: [
+  ]
 })
 export class AppModule { }
+
