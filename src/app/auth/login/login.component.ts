@@ -8,14 +8,14 @@ import { AngularFire }                  from 'angularfire2';
 import { AuthProviders, AuthMethods }   from 'angularfire2';
 
 // app
-import { moveIn }                       from '../../router.animations';
+//import { moveIn }                       from '../../router.animations';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
-  animations: [moveIn()],
-  host: {'[@moveIn]': ''}
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.scss'],
+    //animations: [moveIn()],
+    //host: {'[@moveIn]': ''}
 })
 export class LoginComponent implements OnInit {
 

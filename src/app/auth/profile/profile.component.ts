@@ -2,13 +2,14 @@
 import { Component, OnInit }            from '@angular/core';
 import { Pipe, PipeTransform }          from '@angular/core';
 import { Router }                       from '@angular/router';
+import { Observable }                   from 'rxjs/Observable';
 
 // services
-import { AuthService }                  from '../../auth.service';
+import { AuthService }                  from '../auth.service';
 
 // app
 //import { moveIn, fallIn, moveInLeft }   from '../../router.animations';
-import { FirstnamePipe }                from '../../../pipes/firstname.pipe';
+import { FirstnamePipe }                from '../../pipes/firstname.pipe';
 
 @Component({
   selector: 'app-profile',
@@ -19,12 +20,12 @@ import { FirstnamePipe }                from '../../../pipes/firstname.pipe';
 })
 export class ProfileComponent implements OnInit {
 
-    name: string = "Stranger";
+    name$: Observable<string>;
     error: any;
     state: string = '';
     
     constructor(public authService: AuthService, private router: Router) {
-        this.name = authService.name;
+        this.name$ = authService.name;
     }
 
     ngOnInit() {

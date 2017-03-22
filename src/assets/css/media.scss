@@ -12,7 +12,79 @@
             line-height: 18px !important;
             font-size: 20px;
         }
-
+    }
+    
+    .floating-progress {
+        position: fixed;
+        margin-top: 56px;
+        z-index: 1;
     }
 
+    .app-content {
+        margin-top: 56px !important;
+    }
  }
+
+/* SM */
+ @media (max-width: 599px){
+    .floating-progress {
+        position: fixed;
+        margin-top: 56px;
+        z-index: 1;
+    }
+
+    .app-content {
+        margin-top: 56px !important;
+    }
+}
+
+/* MD */
+@media (min-width: 600px) and (max-width: 650px){
+    .floating-progress {
+        position: fixed;
+        margin-top: 64px;
+        z-index: 1;
+    }
+
+    .app-content {
+        margin-top: 64px !important;
+    }
+}
+
+/* LG */
+@media (min-width: 651px) and (max-width: 900px){
+    .floating-progress {
+        position: fixed;
+        margin-top: 64px;
+        z-index: 1;
+    }
+
+    .app-content {
+        margin-top: 64px !important;
+    }
+}
+
+@media (min-width: 901px) and (max-width: 960px){
+    .floating-progress {
+        position: fixed;
+        margin-top: 48px;
+        z-index: 1;
+    }
+
+    .app-content {
+        margin-top: 48px !important;
+    }
+}
+
+/* XL */
+@media (min-width: 961px) {
+    .floating-progress {
+        position: fixed;
+        margin-top: 64px;
+        z-index: 1;
+    }
+
+    .app-content {
+        margin-top: 64px !important;
+    }
+}

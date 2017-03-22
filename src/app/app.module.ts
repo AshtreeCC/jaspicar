@@ -15,7 +15,7 @@ import { AngularFireOfflineModule }     from 'angularfire2-offline';
 import { AuthModule }                   from './auth/auth.module';
 
 // services
-import { AuthService, AuthGuard }       from './auth/auth.service';
+//import { AuthService, AuthGuard }       from './auth/auth.service';
 
 // app
 import { AppComponent }                 from './app.component';
@@ -46,16 +46,18 @@ import { FIREBASE_CONFIG }              from './app.config';
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireOfflineModule,
     MaterialModule.forRoot(),
-    FlexLayoutModule.forRoot()
+    FlexLayoutModule.forRoot(),
+    AuthModule
   ],
   providers: [
-      AuthService,
-      AuthGuard
+      //AuthService,
+      //AuthGuard
   ],
   bootstrap: [
     AppComponent
   ],
   entryComponents: [
+      //APP_AUTH_COMPONENTS
   ]
 })
 export class AppModule { }

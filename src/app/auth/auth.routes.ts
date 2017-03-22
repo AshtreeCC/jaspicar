@@ -13,7 +13,7 @@ import { AuthGuard }                    from './auth.service';
 
 export const _AUTH_ROUTES: Routes = [
     { path: 'login', component: LoginComponent },
-    { path: 'login/email', component: EmailComponent }
+    { path: 'login/email', component: EmailComponent },
     { path: 'login/signup', component: SignupComponent },
     { path: 'user/profile', component: ProfileComponent, canActivate: [AuthGuard] }
 ]

@@ -1,19 +1,23 @@
-<md-sidenav-container>
-<!--<div class="flex-container app-container" fxLayout="row" fxLayoutAlign="center start">
-    <div class="flex-item flex-container app-root" 
-         fxLayout="column" 
-         fxLayoutAlign="start stretch" 
-         fxFill
+<md-sidenav-container  class="app-container">
+    
+    <md-sidenav #sidebar class="sidebar"
+                [mode]="sidenavMode"
+                [disableClose]="disableClose"> 
+        <app-sidenav></app-sidenav>
+    </md-sidenav>
+
+    <app-header (sidenav)="sidenavToggle($event)"></app-header>
+    <div class="flex-container app-content"
+         fxLayoutAlign="start stretch"
+         fxLayout="column"
          fxFlex.xs="100" 
          fxFlex.sm="90" 
-         fxFlex.md="80" 
-         fxFlex.lg="70" 
-         fxFlex.xl="60">-->
-        <app-sidenav></app-sidenav>
-        <app-header
-            (sidenav)="sidenavToggle($event)"></app-header>
+         fxFlex.md="90" 
+         fxFlex.lg="80" 
+         fxFlex.xl="70"
+         fxFill>
         <router-outlet></router-outlet>
-    <!--</div>
-        <div>-->
+    </div>
+
 </md-sidenav-container>
 

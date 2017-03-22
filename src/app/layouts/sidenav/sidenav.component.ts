@@ -1,7 +1,5 @@
 // angular
 import { Component, OnInit }            from '@angular/core';
-import { ViewChild }                    from '@angular/core';
-import { MdSidenav }                    from '@angular/material';
 
 @Component({
   selector: 'app-sidenav',
@@ -10,17 +8,10 @@ import { MdSidenav }                    from '@angular/material';
 })
 export class SidenavComponent implements OnInit {
 
-    //@Input() sidenav;
-    @ViewChild('sidebar') sidenav: MdSidenav
-    
     constructor() { 
     }
 
     ngOnInit() {
-    }
-
-    toggle() {
-        this.sidenav.toggle();
     }
 
 }
