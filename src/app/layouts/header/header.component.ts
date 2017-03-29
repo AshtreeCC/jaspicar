@@ -1,5 +1,5 @@
 // angular
-import { Component, OnInit }                    from '@angular/core';
+import { Component, OnInit, HostListener }                    from '@angular/core';
 import { Input, Output, EventEmitter }          from '@angular/core';
 import { ChangeDetectionStrategy }              from '@angular/core';
 import { Router }                               from '@angular/router';
@@ -39,6 +39,11 @@ export class HeaderComponent implements OnInit {
     
     logout() {
         this.authService.logout();
+    }
+    
+    @HostListener('window:scroll', ['$event'])
+    onScroll(event) {
+        LOG.DEBUG("Scroll2", event);
     }
     
 }

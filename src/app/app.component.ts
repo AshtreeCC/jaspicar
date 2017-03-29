@@ -1,7 +1,9 @@
 // angular
 import { Component, OnInit }            from '@angular/core';
-import { ViewChild, NgZone }            from '@angular/core';
+import { ViewChild }                    from '@angular/core';
+import { HostListener }                 from '@angular/core';
 import { MdSidenav }                    from '@angular/material';
+import { Observable }                   from 'rxjs/Observable';
 
 // libraries
 import { StaticLog as LOG }             from 'system/static-log';
@@ -19,28 +21,80 @@ const maxContentWidth: number = 900;
 export class AppComponent implements OnInit {
 
     @ViewChild('sidebar') sidenav: MdSidenav
-
-    ngZone: NgZone;
+    
+    //ngZone: NgZone;
+    //document: Document;
 
     sidenavMode: string = "over";
     disableClose: boolean = false;
     manualClose: boolean = false;
 
-    constructor(ngZone: NgZone) {
+    innerWidth: number = window.innerWidth;
+
+    scrollOffset: number = 0;
+    scrollHeader: number = 0;
+    scrollHeaderOffset: number = 64;
+    scrollingUp: boolean = false;
+
+    constructor() {
         LOG.INFO("LOG enabled.");
 
-        // Not being automatically assigned
-        this.ngZone = ngZone;
     }
     
     ngOnInit() {
-        this.initialiseSidenavState();
+        this.updateSidenavState();
+        this.observeHeaderState();
     }
 
+    scrolledToBottom(position, limit) {
+        return (position === limit);
+    }
+
+    scrollingUpward(position) {
+
+        if (position < this.scrollOffset) {
+            this.scrollingUp = true;
+            if (this.scrollHeaderOffset > 0) {
+                this.scrollHeaderOffset = this.scrollHeaderOffset - (this.scrollOffset - position);
+            } else {
+                this.scrollHeaderOffset = 0;
+            }
+            this.scrollHeader = position - this.scrollHeaderOffset;
+        } else {
+            this.scrollingUp = false;
+            this.scrollHeaderOffset = (this.scrollOffset < 64) ? this.scrollOffset : 64;
+        }
+        this.scrollOffset = position;
+        return this.scrollingUp;
+    }
+
+    observeHeaderState() {
+        // @TODO Get this working with HostListener
+        let tracker = document.querySelector('.mat-sidenav-content');
+        let theEnd = tracker.scrollHeight - tracker.clientHeight;
+
+
+        let scroll$ = Observable.fromEvent(tracker, 'scroll').map(() => {
+            //LOG.DEBUG("tracker.scrollTop", tracker.scrollTop); 
+            return tracker.scrollTop;
+        });
+
+        let scroll = scroll$.subscribe((scrollTop) => {
+            //LOG.DEBUG("scrollTop: "+scrollTop+" theEnd: "+theEnd);
+            
+            //LOG.ASSERT(this.scrollingUpward(scrollTop), "Scrolling up: ");
+            
+            if (this.scrollingUpward(scrollTop)) {
+                
+            }
+        });
+
+    }
+    
     updateSidenavState() {
         //LOG.ASSERT(this.sidenav);
         if (this.sidenav != null) {
-            if ((window.innerWidth > maxContentWidth) && (!this.manualClose)) {
+            if ((this.innerWidth > maxContentWidth) && (!this.manualClose)) {
                 this.sidenav.open();
                 this.sidenavMode = "side";
                 this.disableClose = true;
@@ -52,26 +106,29 @@ export class AppComponent implements OnInit {
         }
     }
 
-    initialiseSidenavState() {
+    @HostListener('window:resize', ['$event'])
+    initialiseSidenavState(event: any) {
 
-        let ngZone = this.ngZone;
+        LOG.DEBUG(event.target.innerWidth);
+        //let ngZone = this.ngZone;
         
         // Set initial position
+        this.innerWidth = event.target.innerWidth;
         this.updateSidenavState();
 
         // Watch for window resizes
-        window.onresize = (event) => {
-            ngZone.run(() => {
-                this.updateSidenavState();
-            });
-        }
+        //window.onresize = (event) => {
+        //ngZone.run(() => {
+        //        this.updateSidenavState();
+        //    });
+        //}
 
     }
 
-    sidenavToggle(event) {
+    sidenavToggle(event: Event) {
 
         // Check if the user manually closed
-        if (window.innerWidth > maxContentWidth) {
+        if (this.innerWidth > maxContentWidth) {
             this.manualClose = this.sidenav.opened;
             this.sidenavMode = "side";
             this.disableClose = true;
@@ -80,5 +137,12 @@ export class AppComponent implements OnInit {
         this.sidenav.toggle();
         //LOG.ASSERT(this.manualClose, "manualClose");
     }
-    
+
+    //@HostListener("window:scroll", ['$event'])
+    //onWindowScroll(event: any) {
+    //    LOG.DEBUG("event.target.pageYOffset", event.target.pageYOffset);
+    //    LOG.DEBUG("event.target.scrollTop", event.target.scrollTop);
+    //    LOG.DEBUG("document.body.ScrollTop", this.document.body.scrollTop);
+    //}
+
 }

@@ -5,8 +5,12 @@
                 [disableClose]="disableClose"> 
         <app-sidenav></app-sidenav>
     </md-sidenav>
-
-    <app-header (sidenav)="sidenavToggle($event)"></app-header>
+    
+    
+    <md-toolbar class="header" color="primary"
+                [style.top]="scrollHeader+'px'">
+        <app-header (sidenav)="sidenavToggle($event)"></app-header>
+    </md-toolbar>
     <div class="flex-container app-content"
          fxLayoutAlign="start stretch"
          fxLayout="column"
@@ -14,8 +18,7 @@
          fxFlex.sm="90" 
          fxFlex.md="90" 
          fxFlex.lg="80" 
-         fxFlex.xl="70"
-         fxFill>
+         fxFlex.xl="70">
         <router-outlet></router-outlet>
     </div>
 
