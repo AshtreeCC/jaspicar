@@ -109,7 +109,7 @@ export class AppComponent implements OnInit {
     @HostListener('window:resize', ['$event'])
     initialiseSidenavState(event: any) {
 
-        LOG.DEBUG(event.target.innerWidth);
+        //LOG.DEBUG(event.target.innerWidth);
         //let ngZone = this.ngZone;
         
         // Set initial position
@@ -123,6 +123,10 @@ export class AppComponent implements OnInit {
         //    });
         //}
 
+    }
+
+    sidenavClose(event: Event) {
+        if (!this.disableClose) this.sidenav.close();
     }
 
     sidenavToggle(event: Event) {

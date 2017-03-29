@@ -1,5 +1,9 @@
 <div class="flex-container sidenav-content">
-    <p>
-      sidenav works!
-    </p>
+    <h2>Menu</h2>
+    <a routerLink="/login" (click)='sidenavClose()'>Login</a>
+    <br />
+    <ul>
+        <li><a routerLink="/" (click)='sidenavClose()'>Home</a></li>
+        <li>sidenav works!</li>
+    </ul>
 </div>
