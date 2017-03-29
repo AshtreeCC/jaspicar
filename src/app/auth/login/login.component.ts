@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     constructor(public af: AngularFire, private router: Router) {
         this.af.auth.subscribe(auth => {
             if (auth) {
-                this.router.navigateByUrl('/members');
+                this.router.navigateByUrl('/user/profile');
             } 
         });
     }
@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
             provider: AuthProviders.Facebook,
             method: AuthMethods.Popup
         }).then((success) => {
-            this.router.navigate(['/members']);
+            this.router.navigate(['/user/profile']);
         }).catch((err) => {
             this.error = err;
         });
@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
             provider: AuthProviders.Google,
             method: AuthMethods.Popup
         }).then((success) => {
-            this.router.navigate(['/members']);
+            this.router.navigate(['/user/profile']);
         }).catch((err) => {
             this.error = err;
         });
