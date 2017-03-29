@@ -9,6 +9,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 [latest](https://github.com/AshtreeCC/ng-af-pwa-seed/release/latest)
 
 <details>
+<summary>See earlier releases</summary>
 [v0.1.0-alpha.0](https://github.com/AshtreeCC/ng-af-pwa-seed/release/v0.1.0-alpha.0) (latest)
 </details>
 
@@ -16,9 +17,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 `$ git clone git@github.com:AshtreeCC/ng-af-pwa-seed.git YOUR_PROJECT_NAME`
 
-Then change origin and clean the git repo. See more...
-
 <details>
+<summary>Then change origin and clean the git repo. See more...</summary>
 ### Clean the git repo (optional)
 
 Open project folder
@@ -58,7 +58,7 @@ Copy the files and run `yarn`.
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 <details>
-
+<summary>See more...</summary>
 ### Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
@@ -84,7 +84,6 @@ Before running the tests make sure you are serving the app via `ng serve`.
 Run `npm run live` to start a live server on `http://localhost:8000`.
 
 </details>
-
 ## Deployment
 
 //@TODO
@@ -94,6 +93,7 @@ Run `npm run live` to start a live server on `http://localhost:8000`.
 //@TODO
 
 <details>
+<summary>@TODO</summary>
 ### Github Pages
 
 //@TODO
@@ -109,7 +109,7 @@ Run `npm run live` to start a live server on `http://localhost:8000`.
 //@TODO
 
 <details>
-
+<summary>@TODO</summary>
 //@TODO
 
 </details>
