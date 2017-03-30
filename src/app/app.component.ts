@@ -36,24 +36,44 @@ export class AppComponent implements OnInit {
     scrollHeaderOffset: number = 64;
     scrollingUp: boolean = false;
 
+    /**
+     * App
+     * @LOG Is logging enabled?
+     */
     constructor() {
         LOG.INFO("LOG enabled.");
 
     }
     
+    /**
+     * Initialise
+     */
     ngOnInit() {
         this.updateSidenavState();
         this.observeHeaderState();
     }
 
-    scrolledToBottom(position, limit) {
+    /**
+     * Determine if the user has scrolled to the bottom
+     * @PARAM position
+     * @PARAM limit
+     * @RETURN boolean
+     */
+    scrolledToBottom(position, limit): boolean {
         return (position === limit);
     }
 
-    scrollingUpward(position) {
+    /**
+     * Determine if the user is currently scrolling upward
+     * @PARAM position
+     * @RETURN boolean
+     */
+    scrollingUpward(position): boolean {
+
+        let scrollingUp = false;
 
         if (position < this.scrollOffset) {
-            this.scrollingUp = true;
+            scrollingUp = true;
             if (this.scrollHeaderOffset > 0) {
                 this.scrollHeaderOffset = this.scrollHeaderOffset - (this.scrollOffset - position);
             } else {
@@ -61,13 +81,16 @@ export class AppComponent implements OnInit {
             }
             this.scrollHeader = position - this.scrollHeaderOffset;
         } else {
-            this.scrollingUp = false;
             this.scrollHeaderOffset = (this.scrollOffset < 64) ? this.scrollOffset : 64;
         }
         this.scrollOffset = position;
-        return this.scrollingUp;
+        return scrollingUp;
     }
 
+    /**
+     * Observe the header for any scroll events
+     * @SET this.scrollingUp
+     */
     observeHeaderState() {
         // @TODO Get this working with HostListener
         let tracker = document.querySelector('.mat-sidenav-content');
@@ -75,22 +98,21 @@ export class AppComponent implements OnInit {
 
 
         let scroll$ = Observable.fromEvent(tracker, 'scroll').map(() => {
-            //LOG.DEBUG("tracker.scrollTop", tracker.scrollTop); 
             return tracker.scrollTop;
         });
 
         let scroll = scroll$.subscribe((scrollTop) => {
             //LOG.DEBUG("scrollTop: "+scrollTop+" theEnd: "+theEnd);
-            
-            //LOG.ASSERT(this.scrollingUpward(scrollTop), "Scrolling up: ");
-            
-            if (this.scrollingUpward(scrollTop)) {
-                
-            }
+            this.scrollingUp = this.scrollingUpward(scrollTop);
         });
 
     }
     
+    /**
+     * Check media width and set sidenav to show/hide
+     * @SET this.sidenavMode
+     * @SET this.disableClose
+     */
     updateSidenavState() {
         //LOG.ASSERT(this.sidenav);
         if (this.sidenav != null) {
@@ -106,29 +128,33 @@ export class AppComponent implements OnInit {
         }
     }
 
+    /**
+     * Determine what the initial show/hide state
+     * of the sidenav should be
+     * @SET this.innerWidth
+     */
     @HostListener('window:resize', ['$event'])
     initialiseSidenavState(event: any) {
 
-        //LOG.DEBUG(event.target.innerWidth);
-        //let ngZone = this.ngZone;
-        
         // Set initial position
         this.innerWidth = event.target.innerWidth;
         this.updateSidenavState();
 
-        // Watch for window resizes
-        //window.onresize = (event) => {
-        //ngZone.run(() => {
-        //        this.updateSidenavState();
-        //    });
-        //}
-
     }
 
+    /**
+     * Manually close the sidenav
+     */
     sidenavClose(event: Event) {
         if (!this.disableClose) this.sidenav.close();
     }
 
+    /**
+     * Toggle the sidenav
+     * @SET this.manualClose
+     * @SET this.sidenavMode
+     * @SET this.disableClose
+     */
     sidenavToggle(event: Event) {
 
         // Check if the user manually closed
@@ -139,14 +165,6 @@ export class AppComponent implements OnInit {
         }
 
         this.sidenav.toggle();
-        //LOG.ASSERT(this.manualClose, "manualClose");
     }
-
-    //@HostListener("window:scroll", ['$event'])
-    //onWindowScroll(event: any) {
-    //    LOG.DEBUG("event.target.pageYOffset", event.target.pageYOffset);
-    //    LOG.DEBUG("event.target.scrollTop", event.target.scrollTop);
-    //    LOG.DEBUG("document.body.ScrollTop", this.document.body.scrollTop);
-    //}
 
 }

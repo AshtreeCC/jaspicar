@@ -21,6 +21,9 @@ export class LoginComponent implements OnInit {
 
     error: any;
 
+    /**
+     *
+     */
     constructor(public af: AngularFire, private router: Router) {
         this.af.auth.subscribe(auth => {
             if (auth) {
@@ -29,6 +32,10 @@ export class LoginComponent implements OnInit {
         });
     }
 
+    /**
+     * Login via Facebook
+     * @SET this.error
+     */
     loginFacebook() {
         this.af.auth.login({
             provider: AuthProviders.Facebook,
@@ -40,6 +47,10 @@ export class LoginComponent implements OnInit {
         });
     }
     
+    /**
+     *  Login via Google
+     *  @SET this.error
+     */
     loginGoogle() {
         this.af.auth.login({
             provider: AuthProviders.Google,
@@ -51,6 +62,9 @@ export class LoginComponent implements OnInit {
         });
     }
 
+    /**
+     *
+     */
     ngOnInit() {
     }
 

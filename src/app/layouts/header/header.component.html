@@ -1,6 +1,10 @@
 <div class="flex-container header">
-    <button md-icon-button (click)="sidenav.emit()" class="flex-item">
+    <button *ngIf="isRoot" md-icon-button (click)="sidenav.emit()" class="flex-item">
         <md-icon>menu</md-icon>
+    </button>
+    
+    <button *ngIf="!(isRoot)" md-icon-button [routerLink]="urlBack"class="flex-item">
+        <md-icon>arrow_back</md-icon>
     </button>
 
     <span class="flex-item flex-stretch"><!-- Fills remaining space in current row --></span>
