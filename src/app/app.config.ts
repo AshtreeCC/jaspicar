@@ -1,8 +1,9 @@
 export const FIREBASE_CONFIG = {
-    apiKey: "AIzaSyCEi5x7g_pse4loEUNcJP9S_w3gOD7L-EU",
-    authDomain: "tut-ng-afauth.firebaseapp.com",
-    databaseURL: "https://tut-ng-afauth.firebaseio.com",
-    storageBucket: "tut-ng-afauth.appspot.com",
-    messagingSenderId: "1056633248438"
+    apiKey: "AIzaSyDEPfsTs_--SXVv7QQ_kpm_29lm6i8kPJo",
+    authDomain: "ng-af-pwa-seed.firebaseapp.com",
+    databaseURL: "https://ng-af-pwa-seed.firebaseio.com",
+    projectId: "ng-af-pwa-seed",
+    storageBucket: "ng-af-pwa-seed.appspot.com",
+    messagingSenderId: "581654671290"
 }
 
