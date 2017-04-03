@@ -8,9 +8,27 @@
     overflow: hidden;
 }
 
-.mat-sidenav-content {
-    display: flex !important;
-    flex-direction: column !important;
+:host/deep/ {
+
+    .mat-sidenav-content {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .mat-input-placeholder {
+        color: #b0bec5 !important;
+        &.mat-focused {
+            color: #c2185b !important;
+        }
+    }
+
+    .mat-placeholder-required {
+        color: #c2185b !important;
+    }
+
+    .mat-input-underline {
+        border-color: #b0bec5 !important;
+    }
 }
 
 .header {
