@@ -56,7 +56,7 @@ export class AuthService implements OnDestroy {
 
     initDisplayNameObservable() {
         this._nameS = this.af.auth.subscribe((user) => {
-            if (user) {
+            if (user && user.auth.displayName) {
                 this._name.next(user.auth.displayName);
             }
         });

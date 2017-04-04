@@ -7,6 +7,7 @@ import { LoginComponent }               from './login/login.component';
 import { EmailComponent }               from './email/email.component';
 import { SignupComponent }              from './signup/signup.component';
 import { ProfileComponent }             from './profile/profile.component';
+import { UserComponent }                from './user/user.component';
 
 // services
 import { AuthGuard }                    from './auth.service';
@@ -15,6 +16,7 @@ export const _AUTH_ROUTES: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'login/email', component: EmailComponent },
     { path: 'login/signup', component: SignupComponent },
+    { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
     { path: 'user/profile', component: ProfileComponent, canActivate: [AuthGuard] }
 ]
 

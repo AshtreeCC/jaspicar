@@ -7,10 +7,6 @@ import { Router, NavigationEnd }                from '@angular/router';
 // libraries
 import { StaticLog as LOG }                     from 'system/static-log';
 import { Observable }                           from 'rxjs/Observable';
-//import { Subscription }                         from 'rxjs/Subscription';
-
-// app
-import { FirstnamePipe }                        from '../../pipes/firstname.pipe';
 
 // services
 import { AuthService }                          from '../..//auth/auth.service';
@@ -27,7 +23,6 @@ export class HeaderComponent implements OnInit {
     @Output() sidenav = new EventEmitter();
 
     auth$: Observable<boolean>;
-    name$: Observable<string>;
 
     isRoot: boolean;
     urlBack: string;
@@ -39,7 +34,6 @@ export class HeaderComponent implements OnInit {
      */
     constructor(private authService: AuthService, private router: Router) {
         this.auth$ = this.authService.auth;
-        this.name$ = this.authService.name;
 
         this.checkRouterHistory();
 
@@ -68,10 +62,12 @@ export class HeaderComponent implements OnInit {
         this.router.events
             .filter(event => event instanceof NavigationEnd)
             .subscribe((event) => {
-                let urlSegment = event.url.split("/");
-                urlSegment.pop();
-                this.urlBack = urlSegment.join("/");
-                this.isRoot = (urlSegment.length < 2);
+                if (event.url !== null) {
+                    let urlSegment = event.url.split("/");
+                    urlSegment.pop();
+                    this.urlBack = urlSegment.join("/");
+                    this.isRoot = (urlSegment.length < 2);
+                }
         });
 
     }

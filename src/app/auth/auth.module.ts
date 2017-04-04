@@ -11,6 +11,9 @@ import { APP_AUTH_COMPONENTS }          from './index';
 // services
 import { AuthService, AuthGuard }       from './auth.service';
 
+// pipes
+import { PipesModule }                  from '../pipes/pipes.module';
+
 // app routes
 import { AUTH_ROUTES }                  from './auth.routes';
 
@@ -20,7 +23,8 @@ import { AUTH_ROUTES }                  from './auth.routes';
         FormsModule,
         MaterialModule,
         FlexLayoutModule,
-        AUTH_ROUTES
+        AUTH_ROUTES,
+        PipesModule
     ],
     declarations: [
         APP_AUTH_COMPONENTS

@@ -2,6 +2,7 @@
 import { Component, OnInit }            from '@angular/core';
 import { ViewChild }                    from '@angular/core';
 import { HostListener }                 from '@angular/core';
+import { Router, NavigationEnd }        from '@angular/router';
 import { MdSidenav }                    from '@angular/material';
 import { Observable }                   from 'rxjs/Observable';
 
@@ -40,7 +41,7 @@ export class AppComponent implements OnInit {
      * App
      * @LOG Is logging enabled?
      */
-    constructor() {
+    constructor(private router: Router) {
         LOG.INFO("LOG enabled.");
 
     }
@@ -106,8 +107,19 @@ export class AppComponent implements OnInit {
             this.scrollingUp = this.scrollingUpward(scrollTop);
         });
 
+        this.router.events
+            .filter(event => event instanceof NavigationEnd)
+            .subscribe((event) => {
+                if (event !== null) {
+                    this.scrollOffset = 0;
+                    this.scrollHeader = 0;
+                    this.scrollHeaderOffset = 64;
+
+                }
+            });
+
     }
-    
+
     /**
      * Check media width and set sidenav to show/hide
      * @SET this.sidenavMode

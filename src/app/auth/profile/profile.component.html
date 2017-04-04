@@ -1,8 +1,5 @@
 <div class="flex-container" fxLayout="column" fxLayoutAlign="space-around center">
     <div class="flex-item">
-      <h2>Hey {{ name$ }}!  
-        <button md-button (click)="logout()">Logout</button>
-      </h2>
+      <h2>Hey {{ (name$ | async | firstname) }}!</h2>
     </div>
-    <a routerLink="/login">Navigate to Login, because reasons...</a>
 </div>
