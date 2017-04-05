@@ -1,0 +1,34 @@
+<div class="form-container">
+    
+    <h2>Join now</h2>
+
+    <!--<span class="error" *ngIf="error" [@fallIn]="state">{{ error }}</span>-->
+    <span class="error" *ngIf="error">{{ error }}</span>
+
+    <form #formData="ngForm" (ngSubmit)="onSubmit(formData)">
+
+        <md-input-container fxFill>
+            <input mdInput class="txt"
+                   type="text"
+                   name="email" 
+                   placeholder="Email Address" 
+                   (ngModel)="email" 
+                   required>
+        </md-input-container>
+
+        <md-input-container fxFill>
+            <input mdInput class="txt"
+                   type="password" 
+                   name="password" 
+                   placeholder="Password" 
+                   (ngModel)="password" 
+                   required>
+        </md-input-container>
+        
+        <button class="basic-btn"
+                type="submit"
+                [disabled]="!formData.valid">
+            Create my account
+        </button>
+    </form>
+</div>

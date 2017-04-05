@@ -1,0 +1,26 @@
+<md-toolbar class="flex-container header" color="accent">
+    <span *ngIf="!(auth$ | async)" class="login link flex-item">
+        <small><a routerLink="/login" (click)='sidenavClose()'>Login</a></small>
+    </span>
+    
+    <span *ngIf="(auth$ | async)" class="logout link flex-item">
+        <small><a routerLink (click)="logout(); sidenavClose()">Logout</a></small>
+    </span>
+
+    <span class="flex-stretch flex-item"><!-- Space filler --></span>
+
+    <span *ngIf="(auth$ | async)" class="logout link flex-item">
+        <small><a routerLink="/user" (click)='sidenavClose()'>Hi {{ (name$ | async | firstname) }}</a></small>
+    </span>
+
+</md-toolbar>
+
+<div class="flex-container sidenav-content">
+    <h2>Menu</h2>
+    <ul>
+        <li>
+            <a routerLink="/" (click)='sidenavClose()'>Home</a>
+        </li>
+        
+    </ul>
+</div>

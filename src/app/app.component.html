@@ -1,3 +1,25 @@
-<h1>
-  {{title}}
-</h1>
+<md-sidenav-container class="app-container">
+    
+    <md-sidenav #sidebar class="sidebar"
+                [mode]="sidenavMode"
+                [disableClose]="disableClose"> 
+        <app-sidenav (sidenav)="sidenavClose($event)"></app-sidenav>
+    </md-sidenav>
+    
+    <md-toolbar class="header" color="primary"
+                [style.top]="scrollHeader+'px'">
+        <app-header (sidenav)="sidenavToggle($event)"></app-header>
+    </md-toolbar>
+    <div class="flex-container app-content"
+         fxLayoutAlign="start stretch"
+         fxLayout="column"
+         fxFlex.xs="100" 
+         fxFlex.sm="90" 
+         fxFlex.md="90" 
+         fxFlex.lg="80" 
+         fxFlex.xl="70">
+        <router-outlet></router-outlet>
+    </div>
+
+</md-sidenav-container>
+

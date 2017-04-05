@@ -1,0 +1,60 @@
+.app-container {
+    position: fixed;
+    height: 100%;
+    min-height: 100%;
+    width: 100%;
+    background-color: transparent;
+    color: inherit;
+    overflow: hidden;
+}
+
+:host/deep/ {
+
+    .mat-sidenav-content {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .mat-input-placeholder {
+        color: #b0bec5 !important;
+        &.mat-focused {
+            color: #c2185b !important;
+        }
+    }
+
+    .mat-placeholder-required {
+        color: #c2185b !important;
+    }
+
+    .mat-input-underline {
+        border-color: #b0bec5 !important;
+    }
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    box-shadow: 0 0 10px 2px rgba(0,0,0,0.75);
+    width: 100%;
+
+    & app-header {
+        width: 99%;
+    }
+}
+
+.app-content {
+    padding: 5px;
+    width:100%;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.sidebar {
+  display: flex;
+  height: 100%;
+  width: 250px;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFF;
+  color: inherit;
+}

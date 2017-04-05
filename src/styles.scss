@@ -1,1 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global imports */
+@import url("~https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url("~https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic");
+
+/* Theme */
+@import url("~@angular/material/core/theming/prebuilt/pink-bluegrey.css");
+//@import url("~./assets/css/themes/bluegrey-deeporange.scss");
+//@import url("~./assets/css/themes/deeppurple-amber.css");
+
+/* Library Imports */
+//@import "~??/layout/stretching";
+
+/* Local imports */
+@import './assets/css/mixins.scss';
+@import './assets/css/loading.scss';
+@import './assets/css/index.scss';
+@import './assets/css/deep.scss';
+@import './assets/css/media.scss';

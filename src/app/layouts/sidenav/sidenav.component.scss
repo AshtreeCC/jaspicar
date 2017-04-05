@@ -1,0 +1,25 @@
+.flex-container.sidenav-content {
+    width: 230px;
+    padding: 10px;
+}
+
+a {
+    .link & {
+        &,
+        &:active,
+        &:visited {
+            color: #333;
+            text-decoration: none;
+            cursor: pointer;
+        },
+        &:hover {
+            color: #000;
+        }
+    }       
+    
+}
+
+.header {
+    box-shadow: 0 0 10px 2px rgba(0,0,0,0.75);
+}
+
