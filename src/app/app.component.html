@@ -3,9 +3,8 @@
     <md-sidenav #sidebar class="sidebar"
                 [mode]="sidenavMode"
                 [disableClose]="disableClose"> 
-        <app-sidenav></app-sidenav>
+        <app-sidenav (sidenav)="sidenavClose($event)"></app-sidenav>
     </md-sidenav>
-    
     
     <md-toolbar class="header" color="primary"
                 [style.top]="scrollHeader+'px'">

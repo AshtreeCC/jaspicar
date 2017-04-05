@@ -1,14 +1,15 @@
 <div class="flex-container header">
-    <button md-icon-button (click)="sidenav.emit()" class="flex-item">
+    <button *ngIf="isRoot" md-icon-button (click)="sidenav.emit()" class="flex-item">
         <md-icon>menu</md-icon>
     </button>
+    
+    <button *ngIf="!(isRoot)" md-icon-button [routerLink]="urlBack"class="flex-item">
+        <md-icon>arrow_back</md-icon>
+    </button>
 
-    <span class="flex-item flex-stretch"><!-- Fills remaining space in current row --></span>
+    <span class="flex-item flex-stretch"><!-- Space filler --></span>
 
-    <span *ngIf="(auth$ | async)" class="logout link flex-item">
-        <small>Hi {{ (name$ | async | firstname) }} | <a routerLink (click)="logout()">Logout</a></small>
-    </span>
-    <span *ngIf="!(auth$ | async)" class="login link flex-item">
+     <span *ngIf="!(auth$ | async)" class="login link flex-item">
         <small><a routerLink="/login">Login</a></small>
     </span>
 </div>

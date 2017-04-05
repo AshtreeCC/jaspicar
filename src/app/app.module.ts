@@ -24,7 +24,7 @@ import { APP_LAYOUT_COMPONENTS }        from './layouts/index';
 import { APP_PAGE_COMPONENTS }          from './pages/index';
 
 // pipes
-import { FirstnamePipe }                from "./pipes/firstname.pipe";
+import { PipesModule }                  from "./pipes/pipes.module";
 
 // misc
 import { APP_ROUTES }                   from './app.routes';
@@ -36,7 +36,6 @@ import { FIREBASE_CONFIG }              from './app.config';
     APP_LAYOUT_COMPONENTS,
     //APP_AUTH_COMPONENTS,
     APP_PAGE_COMPONENTS,
-    FirstnamePipe,
   ],
   imports: [
     BrowserModule,
@@ -47,17 +46,13 @@ import { FIREBASE_CONFIG }              from './app.config';
     AngularFireOfflineModule,
     MaterialModule.forRoot(),
     FlexLayoutModule.forRoot(),
-    AuthModule
+    AuthModule,
+    PipesModule,
   ],
   providers: [
-      //AuthService,
-      //AuthGuard
   ],
   bootstrap: [
     AppComponent
-  ],
-  entryComponents: [
-      //APP_AUTH_COMPONENTS
   ]
 })
 export class AppModule { }

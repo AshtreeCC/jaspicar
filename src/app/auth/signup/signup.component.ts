@@ -21,11 +21,22 @@ export class SignupComponent implements OnInit {
     state: string = '';
     error: any;
 
+    /**
+     *
+     */
     constructor(public af: AngularFire, private router: Router) {  }
 
+    /**
+     *
+     */
     ngOnInit() {
     }
 
+    /**
+     * Submit the signup form
+     * @PARAM formData
+     * [@SET this.error] 
+     */
     onSubmit(formData) {
         if (formData.valid) {
             console.log(formData.value);
@@ -40,8 +51,12 @@ export class SignupComponent implements OnInit {
         }
     }
 
+    /**
+     * Clear errors
+     * @UNSET this.error
+     */
     clearErrors() {
-        this.error = '';
+        this.error = "";
     }
 
 }

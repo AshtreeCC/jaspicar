@@ -1,3 +1,73 @@
+/* XL */
+@media (min-width: 961px) {
+    .floating-progress {
+        position: fixed;
+        margin-top: 64px;
+        z-index: 1;
+    }
+
+    .app-content {
+        margin-top: 64px !important;
+    }
+}
+
+/* LG */
+@media (min-width: 901px) and (max-width: 960px){
+    .floating-progress {
+        position: fixed;
+        margin-top: 48px;
+        z-index: 1;
+    }
+
+    .app-content {
+        margin-top: 48px !important;
+    }
+}
+
+@media (min-width: 651px) and (max-width: 900px){
+    .floating-progress {
+        position: fixed;
+        margin-top: 64px;
+        z-index: 1;
+    }
+
+    .app-content {
+        margin-top: 64px !important;
+    }
+}
+
+/* MD */
+@media (min-width: 600px) and (max-width: 650px){
+    .floating-progress {
+        position: fixed;
+        margin-top: 64px;
+        z-index: 1;
+    }
+
+    .app-content {
+        margin-top: 64px !important;
+    }
+}
+
+/* SM */
+ @media (max-width: 599px){
+
+    button {
+        padding-left: 3em;
+        font-size: 1.2em;
+    }
+ 
+    .floating-progress {
+        position: fixed;
+        margin-top: 56px;
+        z-index: 1;
+    }
+
+    .app-content {
+        margin-top: 56px !important;
+    }
+}
+
 /* XS */
 @media(max-width: 321px) {
     * {
@@ -6,6 +76,11 @@
 
     small {
         font-size: smaller;
+    }
+
+    button {
+        padding-left: 3.3em;
+        font-size: 1em;
     }
 
     button[md-mini-fab] {
@@ -29,66 +104,3 @@
     }
  }
 
-/* SM */
- @media (max-width: 599px){
-    .floating-progress {
-        position: fixed;
-        margin-top: 56px;
-        z-index: 1;
-    }
-
-    .app-content {
-        margin-top: 56px !important;
-    }
-}
-
-/* MD */
-@media (min-width: 600px) and (max-width: 650px){
-    .floating-progress {
-        position: fixed;
-        margin-top: 64px;
-        z-index: 1;
-    }
-
-    .app-content {
-        margin-top: 64px !important;
-    }
-}
-
-/* LG */
-@media (min-width: 651px) and (max-width: 900px){
-    .floating-progress {
-        position: fixed;
-        margin-top: 64px;
-        z-index: 1;
-    }
-
-    .app-content {
-        margin-top: 64px !important;
-    }
-}
-
-@media (min-width: 901px) and (max-width: 960px){
-    .floating-progress {
-        position: fixed;
-        margin-top: 48px;
-        z-index: 1;
-    }
-
-    .app-content {
-        margin-top: 48px !important;
-    }
-}
-
-/* XL */
-@media (min-width: 961px) {
-    .floating-progress {
-        position: fixed;
-        margin-top: 64px;
-        z-index: 1;
-    }
-
-    .app-content {
-        margin-top: 64px !important;
-    }
-}

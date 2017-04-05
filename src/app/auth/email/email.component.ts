@@ -24,7 +24,7 @@ export class EmailComponent implements OnInit {
     constructor(public af: AngularFire, private router: Router) {
         this.af.auth.subscribe((auth) => {
             if (auth) {
-                this.router.navigateByUrl('/members');
+                this.router.navigate(['/user/profile']);
             }
         });
     }
@@ -34,7 +34,6 @@ export class EmailComponent implements OnInit {
 
     onSubmit(formData) {
         if (formData.valid) {
-            console.log(formData.value);
             this.af.auth.login({
                 email: formData.value.email,
                 password: formData.value.password
@@ -42,7 +41,7 @@ export class EmailComponent implements OnInit {
                 provider: AuthProviders.Password,
                 method: AuthMethods.Password
             }).then((success) => {
-                this.router.navigate(['/members']);
+                this.router.navigate(['/user/profile']);
             }).catch((err) => {
                 this.error = err;
             });
