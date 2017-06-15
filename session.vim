@@ -15,11 +15,11 @@ badd +17 src/styles/mixins.scss
 badd +18 src/styles/media.scss
 badd +17 src/styles/loading.scss
 badd +17 src/styles/index.scss
-badd +1 README.md
+badd +120 README.md
 badd +20 tsconfig.json
 badd +19 package.json
 badd +23 src/index.html
-badd +41 src/assets/css/themes/bluegrey-deeporange.scss
+badd +26 src/assets/css/themes/bluegrey-deeporange.scss
 badd +1 node_modules/@angular/material/core/theming/prebuilt/deeppurple-amber.scss
 badd +1 node_modules/@angular/material/core/theming/prebuilt/deeppurple-amber.css
 badd +1 node_modules/@angular/material/core/theming/prebuilt/deeppurple-amber.map
@@ -27,15 +27,15 @@ badd +1 src/assets/css/themes/deeppurple-amber.css.map
 badd +1 src/assets/css/themes/deeppurple-amber.css
 badd +14 src/assets/css/themes/deeppurple-amber.scss
 badd +17 src/app/services/auth.service.ts
-badd +6 src/app/auth/auth.service.ts
+badd +136 src/app/auth/auth.service.ts
 badd +19 src/app/logger.service.ts
 badd +173 src/system/static-log.ts
-badd +91 src/app/app.component.ts
+badd +119 src/app/app.component.ts
 badd +10 src/main.ts
 badd +8 src/environments/environment.ts
 badd +1 src/environments/environment.prod.ts
-badd +10 src/app/auth/auth.module.ts
-badd +57 src/app/app.module.ts
+badd +30 src/app/auth/auth.module.ts
+badd +27 src/app/app.module.ts
 badd +1 src/app/app.routes.ts
 badd +9 src/app/app.config.ts
 badd +8 src/app/pages/index.ts
@@ -48,17 +48,17 @@ badd +11 src/app/layouts/index.ts
 badd +16 src/app/auth/auth.routes.ts
 badd +2 src/app/auth/index.ts
 badd +3 src/app/layouts/header/header.component.scss
-badd +1 src/app/layouts/header/header.component.ts
+badd +10 src/app/layouts/header/header.component.ts
 badd +13 src/assets/css/mixins.scss
 badd +1 src/app/layouts/sidenav/sidenav.component.scss
-badd +1 src/app/layouts/sidenav/sidenav.component.html
-badd +21 src/app/layouts/sidenav/sidenav.component.ts
+badd +10 src/app/layouts/sidenav/sidenav.component.html
+badd +20 src/app/layouts/sidenav/sidenav.component.ts
 badd +5 src/app/auth/offline/offline.component.ts
 badd +1 src/assets/css/loading.scss
 badd +4 src/assets/css/index.scss
 badd +1 src/assets/css/media.scss
-badd +32 src/app/auth/login/login.component.ts
-badd +30 src/app/auth/email/email.component.ts
+badd +47 src/app/auth/login/login.component.ts
+badd +32 src/app/auth/email/email.component.ts
 badd +17 src/app/auth/signup/signup.component.ts
 badd +11 src/app/auth/profile/profile.component.ts
 badd +12 src/app/auth/login/login.component.html
@@ -79,6 +79,7 @@ badd +9 src/app/auth/user/user.component.ts
 badd +14 src/app/pipes/pipes.module.ts
 badd +4 src/app/pipes/index.ts
 badd +1 src/app/pipes/firstname/firstname.pipe.ts
+badd +7 swconfig.js
 argglobal
 silent! argdel *
 set stal=2
@@ -117,9 +118,9 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 71 + 102) / 204)
-exe 'vert 2resize ' . ((&columns * 106 + 102) / 204)
-exe 'vert 3resize ' . ((&columns * 25 + 102) / 204)
+exe 'vert 1resize ' . ((&columns * 132 + 102) / 204)
+exe 'vert 2resize ' . ((&columns * 25 + 102) / 204)
+exe 'vert 3resize ' . ((&columns * 45 + 102) / 204)
 argglobal
 setlocal fdm=syntax
 setlocal fde=0
@@ -147,12 +148,12 @@ setlocal fdl=10
 setlocal fml=1
 setlocal fdn=10
 setlocal fen
-let s:l = 27 - ((11 * winheight(0) + 16) / 32)
+let s:l = 32 - ((31 * winheight(0) + 16) / 32)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-27
-normal! 043|
+32
+normal! 0
 lcd ~/Workspace/angular.dev/ng-af-pwa-seed/src/app
 wincmd w
 argglobal
@@ -173,9 +174,9 @@ normal! zt
 normal! 03|
 lcd ~/Workspace/angular.dev/ng-af-pwa-seed/src/app
 wincmd w
-exe 'vert 1resize ' . ((&columns * 71 + 102) / 204)
-exe 'vert 2resize ' . ((&columns * 106 + 102) / 204)
-exe 'vert 3resize ' . ((&columns * 25 + 102) / 204)
+exe 'vert 1resize ' . ((&columns * 132 + 102) / 204)
+exe 'vert 2resize ' . ((&columns * 25 + 102) / 204)
+exe 'vert 3resize ' . ((&columns * 45 + 102) / 204)
 tabedit ~/Workspace/angular.dev/ng-af-pwa-seed/src/app/auth/auth.module.ts
 set splitbelow splitright
 wincmd _ | wincmd |
@@ -189,9 +190,9 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 71 + 102) / 204)
+exe 'vert 1resize ' . ((&columns * 132 + 102) / 204)
 exe 'vert 2resize ' . ((&columns * 25 + 102) / 204)
-exe 'vert 3resize ' . ((&columns * 106 + 102) / 204)
+exe 'vert 3resize ' . ((&columns * 45 + 102) / 204)
 argglobal
 setlocal fdm=syntax
 setlocal fde=0
@@ -201,173 +202,16 @@ setlocal fdl=10
 setlocal fml=1
 setlocal fdn=10
 setlocal fen
-let s:l = 30 - ((14 * winheight(0) + 16) / 32)
+let s:l = 29 - ((13 * winheight(0) + 16) / 32)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-30
-normal! 027|
+29
+normal! 020|
 lcd ~/Workspace/angular.dev/ng-af-pwa-seed/src/app/auth
 wincmd w
 argglobal
 edit ~/Workspace/angular.dev/ng-af-pwa-seed/src/app/auth/auth.routes.ts
-setlocal fdm=syntax
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=10
-setlocal fml=1
-setlocal fdn=10
-setlocal fen
-let s:l = 20 - ((19 * winheight(0) + 16) / 32)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-20
-normal! 018|
-lcd ~/Workspace/angular.dev/ng-af-pwa-seed/src/app/auth
-wincmd w
-argglobal
-edit ~/Workspace/angular.dev/ng-af-pwa-seed/src/app/auth/auth.service.ts
-setlocal fdm=syntax
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=10
-setlocal fml=1
-setlocal fdn=10
-setlocal fen
-let s:l = 136 - ((21 * winheight(0) + 16) / 32)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-136
-normal! 019|
-lcd ~/Workspace/angular.dev/ng-af-pwa-seed/src/app/auth
-wincmd w
-3wincmd w
-exe 'vert 1resize ' . ((&columns * 71 + 102) / 204)
-exe 'vert 2resize ' . ((&columns * 25 + 102) / 204)
-exe 'vert 3resize ' . ((&columns * 106 + 102) / 204)
-tabedit ~/Workspace/angular.dev/ng-af-pwa-seed/src/app/app.component.ts
-set splitbelow splitright
-wincmd _ | wincmd |
-vsplit
-wincmd _ | wincmd |
-vsplit
-2wincmd h
-wincmd w
-wincmd w
-set nosplitbelow
-set nosplitright
-wincmd t
-set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 132 + 102) / 204)
-exe 'vert 2resize ' . ((&columns * 25 + 102) / 204)
-exe 'vert 3resize ' . ((&columns * 45 + 102) / 204)
-argglobal
-setlocal fdm=syntax
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=10
-setlocal fml=1
-setlocal fdn=10
-setlocal fen
-let s:l = 119 - ((27 * winheight(0) + 16) / 32)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-119
-normal! 012|
-lcd ~/Workspace/angular.dev/ng-af-pwa-seed/src/app
-wincmd w
-argglobal
-edit ~/Workspace/angular.dev/ng-af-pwa-seed/src/app/app.component.html
-setlocal fdm=syntax
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=10
-setlocal fml=1
-setlocal fdn=10
-setlocal fen
-let s:l = 17 - ((16 * winheight(0) + 16) / 32)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-17
-normal! 04|
-lcd ~/Workspace/angular.dev/ng-af-pwa-seed/src/app
-wincmd w
-argglobal
-edit ~/Workspace/angular.dev/ng-af-pwa-seed/src/app/app.component.scss
-setlocal fdm=syntax
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=10
-setlocal fml=1
-setlocal fdn=10
-setlocal fen
-let s:l = 31 - ((21 * winheight(0) + 16) / 32)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-31
-normal! 05|
-lcd ~/Workspace/angular.dev/ng-af-pwa-seed/src/app
-wincmd w
-exe 'vert 1resize ' . ((&columns * 132 + 102) / 204)
-exe 'vert 2resize ' . ((&columns * 25 + 102) / 204)
-exe 'vert 3resize ' . ((&columns * 45 + 102) / 204)
-tabedit ~/Workspace/angular.dev/ng-af-pwa-seed/src/assets/css/deep.scss
-set splitbelow splitright
-wincmd _ | wincmd |
-vsplit
-wincmd _ | wincmd |
-vsplit
-wincmd _ | wincmd |
-vsplit
-wincmd _ | wincmd |
-vsplit
-wincmd _ | wincmd |
-vsplit
-5wincmd h
-wincmd w
-wincmd w
-wincmd w
-wincmd w
-wincmd w
-set nosplitbelow
-set nosplitright
-wincmd t
-set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 74 + 102) / 204)
-exe 'vert 2resize ' . ((&columns * 25 + 102) / 204)
-exe 'vert 3resize ' . ((&columns * 25 + 102) / 204)
-exe 'vert 4resize ' . ((&columns * 25 + 102) / 204)
-exe 'vert 5resize ' . ((&columns * 25 + 102) / 204)
-exe 'vert 6resize ' . ((&columns * 25 + 102) / 204)
-argglobal
-setlocal fdm=syntax
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=10
-setlocal fml=1
-setlocal fdn=10
-setlocal fen
-let s:l = 3 - ((2 * winheight(0) + 16) / 32)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-3
-normal! 0
-lcd ~/Workspace/angular.dev/ng-af-pwa-seed/src/assets/css
-wincmd w
-argglobal
-edit ~/Workspace/angular.dev/ng-af-pwa-seed/src/styles.scss
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -382,6 +226,140 @@ exe s:l
 normal! zt
 18
 normal! 07|
+lcd ~/Workspace/angular.dev/ng-af-pwa-seed/src/app/auth
+wincmd w
+argglobal
+edit ~/Workspace/angular.dev/ng-af-pwa-seed/src/app/auth/auth.service.ts
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=10
+setlocal fml=1
+setlocal fdn=10
+setlocal fen
+let s:l = 32 - ((31 * winheight(0) + 16) / 32)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+32
+normal! 042|
+lcd ~/Workspace/angular.dev/ng-af-pwa-seed/src/app/auth
+wincmd w
+exe 'vert 1resize ' . ((&columns * 132 + 102) / 204)
+exe 'vert 2resize ' . ((&columns * 25 + 102) / 204)
+exe 'vert 3resize ' . ((&columns * 45 + 102) / 204)
+tabedit ~/Workspace/angular.dev/ng-af-pwa-seed/src/app/app.component.ts
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+wincmd _ | wincmd |
+vsplit
+2wincmd h
+wincmd w
+wincmd w
+set nosplitbelow
+set nosplitright
+wincmd t
+set winheight=1 winwidth=1
+exe 'vert 1resize ' . ((&columns * 71 + 102) / 204)
+exe 'vert 2resize ' . ((&columns * 25 + 102) / 204)
+exe 'vert 3resize ' . ((&columns * 106 + 102) / 204)
+argglobal
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=10
+setlocal fml=1
+setlocal fdn=10
+setlocal fen
+let s:l = 107 - ((21 * winheight(0) + 16) / 32)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+107
+normal! 036|
+lcd ~/Workspace/angular.dev/ng-af-pwa-seed/src/app
+wincmd w
+argglobal
+edit ~/Workspace/angular.dev/ng-af-pwa-seed/src/app/app.component.html
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=10
+setlocal fml=1
+setlocal fdn=10
+setlocal fen
+let s:l = 10 - ((9 * winheight(0) + 16) / 32)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+10
+normal! 028|
+lcd ~/Workspace/angular.dev/ng-af-pwa-seed/src/app
+wincmd w
+argglobal
+edit ~/Workspace/angular.dev/ng-af-pwa-seed/src/app/app.component.scss
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=10
+setlocal fml=1
+setlocal fdn=10
+setlocal fen
+let s:l = 37 - ((15 * winheight(0) + 16) / 32)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+37
+normal! 05|
+lcd ~/Workspace/angular.dev/ng-af-pwa-seed/src/app
+wincmd w
+exe 'vert 1resize ' . ((&columns * 71 + 102) / 204)
+exe 'vert 2resize ' . ((&columns * 25 + 102) / 204)
+exe 'vert 3resize ' . ((&columns * 106 + 102) / 204)
+tabedit ~/Workspace/angular.dev/ng-af-pwa-seed/src/styles.scss
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+wincmd _ | wincmd |
+vsplit
+wincmd _ | wincmd |
+vsplit
+wincmd _ | wincmd |
+vsplit
+4wincmd h
+wincmd w
+wincmd w
+wincmd w
+wincmd w
+set nosplitbelow
+set nosplitright
+wincmd t
+set winheight=1 winwidth=1
+exe 'vert 1resize ' . ((&columns * 100 + 102) / 204)
+exe 'vert 2resize ' . ((&columns * 25 + 102) / 204)
+exe 'vert 3resize ' . ((&columns * 25 + 102) / 204)
+exe 'vert 4resize ' . ((&columns * 25 + 102) / 204)
+exe 'vert 5resize ' . ((&columns * 25 + 102) / 204)
+argglobal
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=10
+setlocal fml=1
+setlocal fdn=10
+setlocal fen
+let s:l = 20 - ((19 * winheight(0) + 16) / 32)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+20
+normal! 037|
 lcd ~/Workspace/angular.dev/ng-af-pwa-seed/src
 wincmd w
 argglobal
@@ -394,12 +372,12 @@ setlocal fdl=10
 setlocal fml=1
 setlocal fdn=10
 setlocal fen
-let s:l = 23 - ((22 * winheight(0) + 16) / 32)
+let s:l = 21 - ((8 * winheight(0) + 16) / 32)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-23
-normal! 016|
+21
+normal! 018|
 lcd ~/Workspace/angular.dev/ng-af-pwa-seed/src/assets/css
 wincmd w
 argglobal
@@ -426,12 +404,12 @@ normal! zo
 normal! zo
 86
 normal! zo
-let s:l = 40 - ((15 * winheight(0) + 16) / 32)
+let s:l = 82 - ((3 * winheight(0) + 16) / 32)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-40
-normal! 012|
+82
+normal! 029|
 lcd ~/Workspace/angular.dev/ng-af-pwa-seed/src/assets/css
 wincmd w
 argglobal
@@ -470,12 +448,11 @@ normal! zt
 normal! 010|
 lcd ~/Workspace/angular.dev/ng-af-pwa-seed/src/assets/css
 wincmd w
-exe 'vert 1resize ' . ((&columns * 74 + 102) / 204)
+exe 'vert 1resize ' . ((&columns * 100 + 102) / 204)
 exe 'vert 2resize ' . ((&columns * 25 + 102) / 204)
 exe 'vert 3resize ' . ((&columns * 25 + 102) / 204)
 exe 'vert 4resize ' . ((&columns * 25 + 102) / 204)
 exe 'vert 5resize ' . ((&columns * 25 + 102) / 204)
-exe 'vert 6resize ' . ((&columns * 25 + 102) / 204)
 tabedit ~/Workspace/angular.dev/ng-af-pwa-seed/src/app/layouts/sidenav/sidenav.component.ts
 set splitbelow splitright
 wincmd _ | wincmd |
@@ -501,16 +478,70 @@ setlocal fdl=10
 setlocal fml=1
 setlocal fdn=10
 setlocal fen
-let s:l = 9 - ((8 * winheight(0) + 16) / 32)
+let s:l = 21 - ((20 * winheight(0) + 16) / 32)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-9
-normal! 0
+21
+normal! 030|
 lcd ~/Workspace/angular.dev/ng-af-pwa-seed/src/app/layouts/sidenav
 wincmd w
 argglobal
 edit ~/Workspace/angular.dev/ng-af-pwa-seed/src/app/layouts/sidenav/sidenav.component.html
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=10
+setlocal fml=1
+setlocal fdn=10
+setlocal fen
+let s:l = 13 - ((12 * winheight(0) + 16) / 32)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+13
+normal! 015|
+lcd ~/Workspace/angular.dev/ng-af-pwa-seed/src/app/layouts/sidenav
+wincmd w
+argglobal
+edit ~/Workspace/angular.dev/ng-af-pwa-seed/src/app/layouts/sidenav/sidenav.component.scss
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=10
+setlocal fml=1
+setlocal fdn=10
+setlocal fen
+let s:l = 16 - ((15 * winheight(0) + 16) / 32)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+16
+normal! 023|
+lcd ~/Workspace/angular.dev/ng-af-pwa-seed/src/app/layouts/sidenav
+wincmd w
+exe 'vert 1resize ' . ((&columns * 71 + 102) / 204)
+exe 'vert 2resize ' . ((&columns * 106 + 102) / 204)
+exe 'vert 3resize ' . ((&columns * 25 + 102) / 204)
+tabedit ~/Workspace/angular.dev/ng-af-pwa-seed/src/app/layouts/header/header.component.ts
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+wincmd _ | wincmd |
+vsplit
+2wincmd h
+wincmd w
+wincmd w
+set nosplitbelow
+set nosplitright
+wincmd t
+set winheight=1 winwidth=1
+exe 'vert 1resize ' . ((&columns * 132 + 102) / 204)
+exe 'vert 2resize ' . ((&columns * 45 + 102) / 204)
+exe 'vert 3resize ' . ((&columns * 25 + 102) / 204)
+argglobal
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -524,11 +555,11 @@ if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 10
-normal! 011|
-lcd ~/Workspace/angular.dev/ng-af-pwa-seed/src/app/layouts/sidenav
+normal! 0
+lcd ~/Workspace/angular.dev/ng-af-pwa-seed/src/app/layouts/header
 wincmd w
 argglobal
-edit ~/Workspace/angular.dev/ng-af-pwa-seed/src/app/layouts/sidenav/sidenav.component.scss
+edit ~/Workspace/angular.dev/ng-af-pwa-seed/src/app/layouts/header/header.component.html
 setlocal fdm=syntax
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -537,18 +568,109 @@ setlocal fdl=10
 setlocal fml=1
 setlocal fdn=10
 setlocal fen
-let s:l = 4 - ((3 * winheight(0) + 16) / 32)
+let s:l = 15 - ((14 * winheight(0) + 16) / 32)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-4
-normal! 0
-lcd ~/Workspace/angular.dev/ng-af-pwa-seed/src/app/layouts/sidenav
+15
+normal! 07|
+lcd ~/Workspace/angular.dev/ng-af-pwa-seed/src/app/layouts/header
 wincmd w
-exe 'vert 1resize ' . ((&columns * 71 + 102) / 204)
-exe 'vert 2resize ' . ((&columns * 106 + 102) / 204)
+argglobal
+edit ~/Workspace/angular.dev/ng-af-pwa-seed/src/app/layouts/header/header.component.scss
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=10
+setlocal fml=1
+setlocal fdn=10
+setlocal fen
+let s:l = 5 - ((4 * winheight(0) + 16) / 32)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+5
+normal! 0
+lcd ~/Workspace/angular.dev/ng-af-pwa-seed/src/app/layouts/header
+wincmd w
+exe 'vert 1resize ' . ((&columns * 132 + 102) / 204)
+exe 'vert 2resize ' . ((&columns * 45 + 102) / 204)
 exe 'vert 3resize ' . ((&columns * 25 + 102) / 204)
-tabnext 3
+tabedit ~/Workspace/angular.dev/ng-af-pwa-seed/src/app/auth/login/login.component.ts
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+set nosplitbelow
+set nosplitright
+wincmd t
+set winheight=1 winwidth=1
+exe 'vert 1resize ' . ((&columns * 132 + 102) / 204)
+exe 'vert 2resize ' . ((&columns * 71 + 102) / 204)
+argglobal
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=10
+setlocal fml=1
+setlocal fdn=10
+setlocal fen
+let s:l = 47 - ((31 * winheight(0) + 16) / 32)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+47
+normal! 012|
+lcd ~/Workspace/angular.dev/ng-af-pwa-seed/src/app/auth/login
+wincmd w
+argglobal
+edit ~/Workspace/angular.dev/ng-af-pwa-seed/src/app/auth/login/login.component.scss
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=10
+setlocal fml=1
+setlocal fdn=10
+setlocal fen
+24
+normal! zo
+let s:l = 12 - ((11 * winheight(0) + 16) / 32)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+12
+normal! 0
+lcd ~/Workspace/angular.dev/ng-af-pwa-seed/src/app/auth/login
+wincmd w
+exe 'vert 1resize ' . ((&columns * 132 + 102) / 204)
+exe 'vert 2resize ' . ((&columns * 71 + 102) / 204)
+tabedit ~/Workspace/angular.dev/ng-af-pwa-seed/src/app/pages/home/home.component.ts
+set splitbelow splitright
+set nosplitbelow
+set nosplitright
+wincmd t
+set winheight=1 winwidth=1
+argglobal
+setlocal fdm=syntax
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=10
+setlocal fml=1
+setlocal fdn=10
+setlocal fen
+let s:l = 16 - ((15 * winheight(0) + 16) / 32)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+16
+normal! 0
+lcd ~/Workspace/angular.dev/ng-af-pwa-seed/src/app/pages/home
+tabnext 5
 set stal=1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

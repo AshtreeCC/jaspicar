@@ -1,7 +1,7 @@
 module.exports = {
     navigateFallback: '/index.html',
     navigateFallbackWhitelist: [
-        /(?![\/__\/])/
+        /^(?!\/__)/
     ],
     stripPrefix: 'dist',
     root: 'dist/',

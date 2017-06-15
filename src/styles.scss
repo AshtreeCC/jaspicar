@@ -3,9 +3,14 @@
 @import url("~https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic");
 
 /* Theme */
+//@import url("~@angular/material/core/theming/prebuilt/deeppurple-amber.css");
+//@import url("~@angular/material/core/theming/prebuilt/indigo-pink.css");
 @import url("~@angular/material/core/theming/prebuilt/pink-bluegrey.css");
-//@import url("~./assets/css/themes/bluegrey-deeporange.scss");
-//@import url("~./assets/css/themes/deeppurple-amber.css");
+//@import url("~@angular/material/core/theming/prebuilt/purple-green.css");
+
+/* Import themes in .angular-cli.json */
+//./assets/css/themes/bluegrey-deeporange.scss
+//./assets/css/themes/lightgreen-orange.scss
 
 /* Library Imports */
 //@import "~??/layout/stretching";
