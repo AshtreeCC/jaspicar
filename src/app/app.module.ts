@@ -9,6 +9,8 @@ import { RouterModule }                 from '@angular/router';
 
 // libraries
 import { AngularFireModule }            from 'angularfire2';
+import { AngularFireAuthModule }        from 'angularfire2/auth';
+import { AngularFireDatabaseModule }    from 'angularfire2/database';
 import { AngularFireOfflineModule }     from 'angularfire2-offline';
 
 // modules
@@ -43,9 +45,11 @@ import { FIREBASE_CONFIG }              from './app.config';
     HttpModule,
     RouterModule.forRoot(APP_ROUTES),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
     AngularFireOfflineModule,
-    MaterialModule.forRoot(),
-    FlexLayoutModule.forRoot(),
+    MaterialModule,
+    FlexLayoutModule,
     AuthModule,
     PipesModule,
   ],

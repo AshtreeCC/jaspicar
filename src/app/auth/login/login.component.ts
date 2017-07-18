@@ -4,8 +4,8 @@ import { HostBinding }                  from '@angular/core';
 import { Router }                       from '@angular/router';
 
 // libraries
-import { AngularFire }                  from 'angularfire2';
-import { AuthProviders, AuthMethods }   from 'angularfire2';
+import { AngularFireAuth }              from 'angularfire2/auth';
+import * as firebase                    from 'firebase/app';
 
 // app
 //import { moveIn }                       from '../../router.animations';
@@ -24,12 +24,15 @@ export class LoginComponent implements OnInit {
     /**
      *
      */
-    constructor(public af: AngularFire, private router: Router) {
-        this.af.auth.subscribe(auth => {
-            if (auth) {
-                this.router.navigateByUrl('/user');
-            } 
-        });
+    constructor(public afAuth: AngularFireAuth, private router: Router) {
+        //this.afAuth.auth.subscribe(auth => {
+        //    if (auth) {
+        //        this.router.navigateByUrl('/user');
+        //    } 
+        //});
+        if (this.afAuth.authState) {
+            this.router.navigateByUrl('/user');
+        }
     }
 
     /**
@@ -37,10 +40,9 @@ export class LoginComponent implements OnInit {
      * @SET this.error
      */
     loginFacebook() {
-        this.af.auth.login({
-            provider: AuthProviders.Facebook,
-            method: AuthMethods.Popup
-        }).then((success) => {
+        this.afAuth.auth.signInWithPopup(
+            new firebase.auth.FacebookAuthProvider()
+        ).then((success) => {
             this.router.navigate(['/user']);
         }).catch((err) => {
             this.error = err;
@@ -52,10 +54,9 @@ export class LoginComponent implements OnInit {
      *  @SET this.error
      */
     loginGoogle() {
-        this.af.auth.login({
-            provider: AuthProviders.Google,
-            method: AuthMethods.Popup
-        }).then((success) => {
+        this.afAuth.auth.signInWithPopup(
+            new firebase.auth.GoogleAuthProvider()
+        ).then((success) => {
             this.router.navigate(['/user']);
         }).catch((err) => {
             this.error = err;

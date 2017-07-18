@@ -6,8 +6,8 @@ import { RouterStateSnapshot }                  from '@angular/router';
 import { MdSnackBar }                           from '@angular/material';
 
 // libraries
-import { AngularFire, FirebaseAuthState }       from 'angularfire2';
-import { AuthProviders, AuthMethods }           from 'angularfire2';
+import { AngularFireAuth }                      from 'angularfire2/auth';
+//import { FirebaseAuthState }                    from 'angularfire2';
 import { Observable }                           from 'rxjs/Observable';
 import { Subscription }                         from 'rxjs/Subscription';
 import { Subject, BehaviorSubject }             from 'rxjs/Rx';
@@ -18,6 +18,9 @@ import { OfflineComponent }                     from './offline/offline.componen
 // services
 import { StaticLog as LOG }                     from "system/static-log";
 
+import * as firebase from 'firebase/app';
+
+
 @Injectable()
 export class AuthService implements OnDestroy {
 
@@ -27,7 +30,7 @@ export class AuthService implements OnDestroy {
 
     private _name: Subject<string> = new BehaviorSubject<string>("Stranger");
 
-    constructor(private snackBar: MdSnackBar, private af: AngularFire, private router: Router) {
+    constructor(private snackBar: MdSnackBar, private afAuth: AngularFireAuth, private router: Router) {
 
         this.initDisplayNameObservable();
         this.initOfflineSnackBarMessage();
@@ -51,13 +54,13 @@ export class AuthService implements OnDestroy {
     }
 
     get auth(): Observable<any> {
-        return this.af.auth;
+        return this.afAuth.authState;
     }
 
     initDisplayNameObservable() {
-        this._nameS = this.af.auth.subscribe((user) => {
-            if (user && user.auth.displayName) {
-                this._name.next(user.auth.displayName);
+        this._nameS = this.afAuth.authState.subscribe((user) => {
+            if (user && user.displayName) {
+                this._name.next(user.displayName);
             }
         });
     }
@@ -84,30 +87,11 @@ export class AuthService implements OnDestroy {
         });
     }
 
-    loginWithFacebook(): firebase.Promise<any> {
-        return this.af.auth.login({
-            provider: AuthProviders.Facebook,
-            method: AuthMethods.Redirect
-        }).catch((error) => {
-            LOG.ERROR("Facebook", error);
-        });
-
-    }
-    
-    loginWithGoogle(): firebase.Promise<any> {
-        return this.af.auth.login({
-            provider: AuthProviders.Google,
-            method: AuthMethods.Redirect
-        }).catch((error) => {
-            LOG.ERROR("Google", error);
-        });
-    }
-
     logout(): firebase.Promise<any> {
         this._name.next("Stranger");
         this.router.navigate(['/login']);
 
-        return this.af.auth.logout();
+        return this.afAuth.auth.signOut();
     }
 
     // Unsubscribe from Observables
@@ -122,10 +106,10 @@ export class AuthService implements OnDestroy {
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-    constructor(private router: Router, private af: AngularFire, private authService: AuthService) { }
+    constructor(private router: Router, private afAuth: AngularFireAuth, private authService: AuthService) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-        return this.af.auth.map((user) => {
+        return this.afAuth.authState.map((user) => {
             if (user) {
                 this.authService.user = user;
                 return true;

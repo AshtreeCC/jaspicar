@@ -61,7 +61,7 @@ export class HeaderComponent implements OnInit {
 
         this.router.events
             .filter(event => event instanceof NavigationEnd)
-            .subscribe((event) => {
+            .subscribe((event: NavigationEnd) => {
                 if (event.url !== null) {
                     let urlSegment = event.url.split("/");
                     urlSegment.pop();
