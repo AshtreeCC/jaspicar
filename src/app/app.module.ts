@@ -1,5 +1,6 @@
 // angular
 import { BrowserModule }                from '@angular/platform-browser';
+import { BrowserAnimationsModule } 	from '@angular/platform-browser/animations';
 import { NgModule }                     from '@angular/core';
 import { FormsModule }                  from '@angular/forms';
 import { HttpModule }                   from '@angular/http';
@@ -41,6 +42,7 @@ import { FIREBASE_CONFIG }              from './app.config';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpModule,
     RouterModule.forRoot(APP_ROUTES),
