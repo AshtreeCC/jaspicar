@@ -3,8 +3,8 @@ import { Component, OnInit }            from '@angular/core';
 import { Router }                       from '@angular/router';
 
 // libraries
-import { AngularFire }                  from 'angularfire2';
-import { AuthProviders, AuthMethods }   from 'angularfire2';
+import { AngularFireAuth }              from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
 
 // app
 //import { moveIn, fallIn }               from '../../router.animations';
@@ -21,12 +21,12 @@ export class EmailComponent implements OnInit {
     state: string = '';
     error: any;
 
-    constructor(public af: AngularFire, private router: Router) {
-        this.af.auth.subscribe((auth) => {
-            if (auth) {
+    constructor(public afAuth: AngularFireAuth, private router: Router) {
+        //this.afAuth.auth.subscribe((auth) => {
+            if (this.afAuth.authState) {
                 this.router.navigate(['/user/profile']);
             }
-        });
+        //});
     }
 
     ngOnInit() {
@@ -34,13 +34,10 @@ export class EmailComponent implements OnInit {
 
     onSubmit(formData) {
         if (formData.valid) {
-            this.af.auth.login({
-                email: formData.value.email,
-                password: formData.value.password
-            },{
-                provider: AuthProviders.Password,
-                method: AuthMethods.Password
-            }).then((success) => {
+            this.afAuth.auth.signInWithEmailAndPassword(
+                formData.value.email, 
+                formData.value.password
+            ).then((success) => {
                 this.router.navigate(['/user/profile']);
             }).catch((err) => {
                 this.error = err;

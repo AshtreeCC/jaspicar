@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { StaticLog as LOG } from 'system/static-log';
 
@@ -14,9 +14,4 @@ export class HomeComponent implements OnInit {
     ngOnInit() {
     }
 
-    @HostListener('window:scroll', ['$event'])
-    onScroll(event) {
-        LOG.DEBUG("Scroll3", event);
-    }
-    
 }

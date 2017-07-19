@@ -1,5 +1,8 @@
 module.exports = {
     navigateFallback: '/index.html',
+    navigateFallbackWhitelist: [
+        /^(?!\/__)/
+    ],
     stripPrefix: 'dist',
     root: 'dist/',
     staticFileGlobs: [
@@ -8,5 +11,9 @@ module.exports = {
         'dist/**.css',
         'dist/assets/images/*',
         'dist/assets/touch/*'
-    ]
+    ],
+    runtimeCaching: [{
+        urlPattern: /\/__\//,
+        handler: 'networkOnly'
+    }]
 };
