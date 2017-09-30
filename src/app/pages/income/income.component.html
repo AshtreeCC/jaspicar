@@ -1,3 +1,18 @@
-<p>
-  income works!
-</p>
+<h2>Record any Income</h2>
+
+<form [formGroup]="incomeForm" novalidate>
+    <div class="form-group">
+        <md-input-container class="example-full-width">
+            <input mdInput placeholder="Invoice #" formControlName="invoice">
+            <md-error *ngIf="incomeForm.controls['invoice'].errors?.required">
+                An invoice number is required
+            </md-error>
+        </md-input-container>
+        <button md-raised-button color="accent" type="reset" (click)="createIncome()" [disabled]="!incomeForm.valid">
+            <md-icon class="md-24" aria-label="">add</md-icon>
+         </button>
+    </div>
+</form>
+
+<p>Form value: {{ incomeForm.value | json }}</p>
+<p>Form status: {{ incomeForm.status | json }}</p>
