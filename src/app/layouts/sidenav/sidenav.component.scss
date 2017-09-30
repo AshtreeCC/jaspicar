@@ -3,20 +3,26 @@
     padding: 10px;
 }
 
+li {
+    list-style: none;
+
+    a {
+        font-size: 1.2em;
+    }
+}
+
 a {
-    .link & {
-        &,
-        &:active,
-        &:visited {
-            color: #333;
-            text-decoration: none;
-            cursor: pointer;
-        },
-        &:hover {
-            color: #000;
-        }
-    }       
-    
+    &,
+    &:link,
+    &:active,
+    &:visited {
+        color: #333;
+        text-decoration: none;
+        cursor: pointer;
+    },
+    &:hover {
+        color: #000;
+    }
 }
 
 .header {

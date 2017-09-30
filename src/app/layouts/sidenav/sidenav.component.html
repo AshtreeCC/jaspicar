@@ -16,11 +16,41 @@
 </md-toolbar>
 
 <div class="flex-container sidenav-content">
-    <h2>Menu</h2>
-    <ul>
-        <li>
-            <a routerLink="/" (click)='sidenavClose()'>Home</a>
-        </li>
-        
-    </ul>
+
+    <md-nav-list>
+        <a md-list-item (click)="sidenavClose()" routerLink="/">
+            <md-icon md-list-icon>home</md-icon>
+            <span md-line>Home</span>
+        </a>
+
+        <hr />
+        <a md-list-item (click)="sidenavClose()" routerLink="/income">
+            <md-icon md-list-icon>trending_up</md-icon>
+            <span md-line>Income</span>
+        </a>
+        <a md-list-item (click)="sidenavClose()" routerLink="/expenses">
+            <md-icon md-list-icon>trending_down</md-icon>
+            <span md-line>Expenses</span>
+        </a>
+        <a md-list-item (click)="sidenavClose()" routerLink="/stock">
+            <md-icon md-list-icon>pets</md-icon>
+            <span md-line>Stock</span>
+        </a>
+        <a md-list-item (click)="sidenavClose()" routerLink="/vat">
+            <md-icon md-list-icon>store</md-icon>
+            <span md-line>VAT</span>
+        </a>
+        <a md-list-item (click)="sidenavClose()" routerLink="/tax">
+            <md-icon md-list-icon>account_balance</md-icon>
+            <span md-line>TAX</span>
+        </a>
+
+        <hr />
+        <a md-list-item (click)="sidenavClose()" routerLink="/contact">
+            <md-icon md-list-icon>person</md-icon>
+            <span md-line>Contact</span>
+        </a>
+    </md-nav-list>
+
 </div>
+
