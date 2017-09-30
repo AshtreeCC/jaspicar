@@ -8,6 +8,14 @@
                 An invoice number is required
             </md-error>
         </md-input-container>
+        <md-input-container>
+            <input mdInput [mdDatepicker]="picker" placeholder="Choose a date" formControlName="date">
+            <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
+            <md-datepicker #picker></md-datepicker>
+            <md-error *ngIf="incomeForm.controls['date'].errors?.required">
+                A date is required
+            </md-error>
+        </md-input-container>
         <button md-raised-button color="accent" type="reset" (click)="createIncome()" [disabled]="!incomeForm.valid">
             <md-icon class="md-24" aria-label="">add</md-icon>
          </button>
@@ -16,3 +24,7 @@
 
 <p>Form value: {{ incomeForm.value | json }}</p>
 <p>Form status: {{ incomeForm.status | json }}</p>
+
+<div *ngFor="let income of allIncome$  | reverse">
+    <app-row [item]="income"></app-row> 
+</div>
