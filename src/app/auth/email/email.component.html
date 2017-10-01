@@ -7,23 +7,23 @@
 
     <form #formData="ngForm" (ngSubmit)="onSubmit(formData)">
 
-        <md-input-container fxFill>
-            <input mdInput class="txt" 
+        <mat-form-field fxFill>
+            <input matInput class="txt" 
                    type="text" 
                    name="email" 
                    placeholder="Email address" 
                    (ngModel)="email" 
                    required>
-        </md-input-container>
+        </mat-form-field>
         
-        <md-input-container fxFill>
-            <input mdInput class="txt" 
+        <mat-form-field fxFill>
+            <input matInput class="txt" 
                    type="password" 
                    name="password" 
                    placeholder="Password" 
                    (ngModel)="password" 
                    required>
-        </md-input-container>
+        </mat-form-field>
         
         <button class="basic-btn"
                 type="submit" 

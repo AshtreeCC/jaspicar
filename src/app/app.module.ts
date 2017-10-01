@@ -4,7 +4,6 @@ import { BrowserAnimationsModule } 	from '@angular/platform-browser/animations';
 import { NgModule }                     from '@angular/core';
 import { ReactiveFormsModule }          from '@angular/forms';
 import { HttpModule }                   from '@angular/http';
-import { MaterialModule }               from '@angular/material';
 import { FlexLayoutModule }             from '@angular/flex-layout';
 import { RouterModule }                 from '@angular/router';
 
@@ -15,6 +14,7 @@ import { AngularFireDatabaseModule }    from 'angularfire2/database';
 import { AngularFireOfflineModule }     from 'angularfire2-offline';
 
 // modules
+import { MaterialModule }               from './material.module';
 import { AuthModule }                   from './auth/auth.module';
 
 // services

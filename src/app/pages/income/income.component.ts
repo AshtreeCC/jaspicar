@@ -1,6 +1,6 @@
 // angular
 import { Component, OnInit }                  from '@angular/core';
-import { MdInputModule, MdDatepickerModule }  from '@angular/material';
+import { MatInputModule, MatDatepickerModule }  from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 // libraries
