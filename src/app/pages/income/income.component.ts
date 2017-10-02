@@ -31,7 +31,7 @@ export class IncomeComponent implements OnInit {
     //busySorting: boolean = false;
     categories = ["Rent", "Cell Towers", "Sales"];
 
-    displayedColumns = ["invoice", "date", "category", "description", "vat", "amount"];
+    displayedColumns = ["invoice", "date", "category", "description", "vattable", "amount", "vat", "net"];
     dataSource: IncomeDataSource;
 
     constructor(private fb: FormBuilder, private afo: AngularFireOfflineDatabase) {
@@ -45,6 +45,12 @@ export class IncomeComponent implements OnInit {
         this.findAllIncome()
             .subscribe(income => {
                 //this.allIncome$ = income;
+                for(let i = 0; i < income.length; i++) {
+                    let item = income[i];
+                    //let amount = Number(income[i].amount);
+                    income[i].auto_net = (item.vat == "Incl.") ? (item.amount/114*100).toFixed(2) : item.amount;
+                    income[i].auto_vat = (item.amount - item.auto_net).toFixed(2);
+                }
                 this.dataSource = new IncomeDataSource(income.reverse());
                 //console.log(income);
             });

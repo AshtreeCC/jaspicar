@@ -7,7 +7,9 @@ export class Income {
         public category: string,
         public description: string,
         public vat: string,
-        public amount: number
+        public amount: number,
+        public auto_vat: any,
+        public auto_net: any
     ) {  }
 
 

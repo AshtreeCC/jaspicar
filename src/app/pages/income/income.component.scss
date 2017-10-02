@@ -12,6 +12,15 @@ button {
 .income-table {
     display: flex;
     flex-direction: column;
+    min-width: 530px;
+    
+    .number {
+        text-align: right;
+    }
+
+    .center {
+        text-align: center;
+    }
 
     button {
         width: auto;
@@ -23,6 +32,18 @@ button {
     .mat-select-trigger {
         height: 32px !important;
     }
+
+    .mat-sort-header-container {
+        float:left;
+    }
+    
+    .number, 
+    .center {
+        .mat-sort-header-container {
+            padding-left:20px;
+        }
+    }
+
 /*
     .mat-input-placeholder,
     .mat-select-placeholder {
@@ -44,5 +65,6 @@ button {
 
     .mat-cell {
         color: #333;
+        //min-width: max-content;
     }
 }
