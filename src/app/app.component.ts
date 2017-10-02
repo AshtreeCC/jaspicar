@@ -94,7 +94,7 @@ export class AppComponent implements OnInit {
      */
     observeHeaderState() {
         // @TODO Get this working with HostListener
-        let tracker = document.querySelector('.mat-sidenav-content');
+        let tracker = document.querySelector('.mat-drawer-content');
         let theEnd = tracker.scrollHeight - tracker.clientHeight;
 
 

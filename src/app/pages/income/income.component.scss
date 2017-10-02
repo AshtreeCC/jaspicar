@@ -2,3 +2,47 @@ button {
     width: 58px;
     min-width: 58px;
 }
+
+.income-form {
+    border: 1px solid #CCC;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.income-table {
+    display: flex;
+    flex-direction: column;
+
+    button {
+        width: auto;
+    }
+}
+
+:host/deep/ {
+
+    .mat-select-trigger {
+        height: 32px !important;
+    }
+/*
+    .mat-input-placeholder,
+    .mat-select-placeholder {
+        color: #333 !important;
+    }
+
+    .mat-select-underline,
+    .mat-form-field-underline {
+        background-color: #333;
+    }
+
+    .mat-raised-button[disabled] {
+        background-color: #DDD;
+    }
+*/
+    .mat-row {
+        background-color: #FFF;
+    }
+
+    .mat-cell {
+        color: #333;
+    }
+}

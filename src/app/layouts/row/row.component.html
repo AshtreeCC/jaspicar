@@ -1,3 +1,5 @@
-<div>
-    {{item.invoice}}
-</div>
+<tr>
+    <td>{{ item.invoice }}</td>
+    <td>{{ item.date | date:'dd MMM y' }}</td>
+    <td>{{ item.category }}</td>
+</tr>

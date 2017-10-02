@@ -8,6 +8,7 @@ export class Income {
         public description: string,
         public vat: string,
         public amount: number
-    ) {}
+    ) {  }
+
 
 }
