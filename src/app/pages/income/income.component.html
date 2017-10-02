@@ -87,16 +87,26 @@
             <md-cell *mdCellDef="let item"> {{ item.description }} </md-cell>
         </ng-container>
 
-        <ng-container mdColumnDef="vat">
-            <md-header-cell *mdHeaderCellDef md-sort-header> VAT </md-header-cell>
-            <md-cell *mdCellDef="let item"> {{ item.vat }} </md-cell>
+        <ng-container mdColumnDef="vattable">
+            <md-header-cell *mdHeaderCellDef md-sort-header class="center"> VAT </md-header-cell>
+            <md-cell *mdCellDef="let item" class="center"> {{ item.vat }} </md-cell>
         </ng-container>
 
         <ng-container mdColumnDef="amount">
-            <md-header-cell *mdHeaderCellDef md-sort-header> Amount </md-header-cell>
-            <md-cell *mdCellDef="let item"> {{ item.amount }} </md-cell>
+            <md-header-cell *mdHeaderCellDef md-sort-header class="number"> Amount </md-header-cell>
+            <md-cell *mdCellDef="let item" class="number"> R {{ item.amount }} </md-cell>
         </ng-container>
-
+        
+        <ng-container mdColumnDef="vat">
+            <md-header-cell *mdHeaderCellDef md-sort-header class="number"> VAT </md-header-cell>
+            <md-cell *mdCellDef="let item" class="number"> R {{ item.auto_vat }} </md-cell>
+        </ng-container>
+        
+        <ng-container mdColumnDef="net">
+            <md-header-cell *mdHeaderCellDef md-sort-header class="number"> NET </md-header-cell>
+            <md-cell *mdCellDef="let item" class="number"> R {{ item.auto_net }} </md-cell>
+        </ng-container>
+        
         <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
         <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
     </md-table>
