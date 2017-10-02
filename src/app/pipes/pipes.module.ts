@@ -13,7 +13,7 @@ import { APP_PIPES }                    from './index';
         APP_PIPES
     ],
     declarations: [
-        APP_PIPES
+        APP_PIPES,
     ]
 })
 export class PipesModule { }

@@ -1,11 +1,14 @@
 //components
-import { HeaderComponent }      from './header/header.component';
-import { SidenavComponent }     from './sidenav/sidenav.component';
+import { HeaderComponent }  from './header/header.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
+import { RowComponent }     from './row/row.component';
 
 export const APP_LAYOUT_COMPONENTS: any[] = [
   HeaderComponent,
-  SidenavComponent
+  SidenavComponent,
+  RowComponent
 ];
 
 export * from './header/header.component';
 export * from './sidenav/sidenav.component';
+export * from './row/row.component';
