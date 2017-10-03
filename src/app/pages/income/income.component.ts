@@ -1,7 +1,8 @@
 // angular
 import { Component, OnInit }                     from '@angular/core';
-import { MatInputModule, MatDatepickerModule }   from '@angular/material';
+//import { MdInput, MdDatepicker }     from '@angular/material';
 import { FormBuilder, FormGroup, Validators }    from '@angular/forms';
+import { DataSource }                            from '@angular/cdk/collections';
 import { MdDialog }                              from '@angular/material';
 
 // libraries
@@ -9,7 +10,6 @@ import { AngularFireDatabase }                   from 'angularfire2/database';
 import { AngularFireOfflineDatabase }            from 'angularfire2-offline';
 //import { FirebaseObjectObservable }              from 'angularfire2/database';
 import { Observable }                            from 'rxjs/Observable';
-import { DataSource }                            from '@angular/cdk/collections';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
 
@@ -28,11 +28,13 @@ export class IncomeComponent implements OnInit {
 
     //allIncome$: Income[];
     incomeForm: FormGroup;
-    incomeUser: string;
+    incomeData: string;
+    incomeCategories: string;
 
     //busySorting: boolean = false;
     //IncomeDialog: CategoriesComponent;
-    categories = ["Rent", "Cell Towers", "Sales"];
+    categories = [];
+    simpleCats = [];
 
     displayedColumns = ["invoice", "date", "category", "description", "vattable", "amount", "vat", "net"];
     dataSource: IncomeDataSource;
@@ -45,35 +47,52 @@ export class IncomeComponent implements OnInit {
     ) {
         //this.income = this.createIncome();
         this.incomeForm = this.createForm();
-        this.incomeUser = "/"+this.authService.id+"/income";
+        this.incomeData = "/"+this.authService.id+"/income/data";
+        this.incomeCategories = "/"+this.authService.id+"/income/categories";
     }
 
     ngOnInit() {
         // Find all the income figures
         // @TODO Filter these on active year
-        this.findAllIncome()
-            .subscribe(income => {
-                //this.allIncome$ = income;
-                for(let i = 0; i < income.length; i++) {
-                    let item = income[i];
-                    //let amount = Number(income[i].amount);
-                    income[i].auto_net = (item.vat == "Incl.") ? (item.amount/114*100).toFixed(2) : item.amount;
-                    income[i].auto_vat = (item.amount - item.auto_net).toFixed(2);
-                }
-                this.dataSource = new IncomeDataSource(income.reverse());
-                //console.log(income);
+        this.findAllIncome().subscribe(income => {
+            //this.allIncome$ = income;
+            for(let i = 0; i < income.length; i++) {
+                let item = income[i];
+                //let amount = Number(income[i].amount);
+                income[i].auto_net = (item.vat == "Incl.") ? (item.amount/114*100).toFixed(2) : item.amount;
+                income[i].auto_vat = (item.amount - item.auto_net).toFixed(2);
+            }
+            this.dataSource = new IncomeDataSource(income.reverse());
+            //console.log(income);
+        });
+
+        this.findAllCategories().subscribe(cat => {
+            this.categories = cat;
+            cat.map(val => {
+                this.simpleCats[val.$key] = val.title;
             });
+            //console.log(this.simpleCats);
+        })
+
+    }
+
+    findAllCategories(): Observable<any[]> {
+        return this.afo.list(this.incomeCategories, {
+            query: {
+                orderByChild: 'title'
+            }
+        });
     }
 
     findAllIncome(): Observable<Income[]> {
-        return this.afo.list(this.incomeUser);
+        return this.afo.list(this.incomeData);
     }
 
     createForm(){
         return this.fb.group({
             invoice     : ['', Validators.required],
             date        : ['', Validators.required],
-            category    : ['', Validators.required],
+            category_id : ['', Validators.required],
             description : [''],
             vat         : ['', Validators.required],
             amount      : ['', [Validators.required, Validators.pattern(/^\d+(\.\d)?\d?$/)]]
@@ -101,7 +120,7 @@ export class IncomeComponent implements OnInit {
         console.log(formData);
 
         // Then we add an item to the list, before it gets reversed again in the html
-        let key = this.afo.list(this.incomeUser).push(formData).key;
+        let key = this.afo.list(this.incomeData).push(formData).key;
 
         //console.log(key);
         //console.log(this.db.object('/income/' + key));
@@ -111,9 +130,10 @@ export class IncomeComponent implements OnInit {
 
     openDialog() {
     this.dialog.open(IncomeDialog, {
-      data: {
-        
-      }
+        "data": { 
+            "location" : this.incomeCategories, 
+            "categories" : this.categories
+        }
     });
   }
 

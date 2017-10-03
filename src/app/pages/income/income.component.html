@@ -18,14 +18,14 @@
                 </md-error>
             </md-form-field>
             <!--<md-form-field>-->
-            <span>
-                <md-select class="input-select" placeholder="Select a category" formControlName="category">
-                    <md-option *ngFor="let cat of categories" [value]="cat">{{ cat }}</md-option>
+            <span class="input-select-wrapper">
+                <md-select class="input-select" placeholder="Select a category" formControlName="category_id">
+                    <md-option *ngFor="let cat of categories" [value]="cat.$key">{{ cat.title }}</md-option>
                 </md-select>
                 <span mdSuffix>
                     <button class="add-category-button" md-icon-button color="black" (click)="openDialog()">
                         <md-icon class="md-14" aria-label="">playlist_add</md-icon>
-                        <span class="add-category-button-underline" [class.add-category-button-invalid]="incomeForm.controls['category'].touched && !incomeForm.controls['category'].dirty"></span>
+                        <span class="add-category-button-underline" [class.add-category-button-invalid]="incomeForm.controls['category_id'].touched && !incomeForm.controls['category_id'].dirty"></span>
                     </button>
                 </span>
             </span>
@@ -88,7 +88,7 @@
             
             <ng-container mdColumnDef="category">
                 <md-header-cell *mdHeaderCellDef md-sort-header> Category </md-header-cell>
-                <md-cell *mdCellDef="let item"> {{ item.category }} </md-cell>
+                <md-cell *mdCellDef="let item"> {{ simpleCats[item.category_id] }} </md-cell>
             </ng-container>
 
             <ng-container mdColumnDef="description">
