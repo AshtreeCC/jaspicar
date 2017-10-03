@@ -55,6 +55,9 @@ import { FIREBASE_CONFIG }              from './app.config';
     AuthModule,
     PipesModule,
   ],
+  entryComponents: [
+    APP_LAYOUT_COMPONENTS
+  ],
   providers: [
   ],
   bootstrap: [

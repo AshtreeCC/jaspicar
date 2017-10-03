@@ -2,6 +2,7 @@
 import { Component, OnInit }                     from '@angular/core';
 import { MatInputModule, MatDatepickerModule }   from '@angular/material';
 import { FormBuilder, FormGroup, Validators }    from '@angular/forms';
+import { MdDialog }                              from '@angular/material';
 
 // libraries
 import { AngularFireDatabase }                   from 'angularfire2/database';
@@ -12,11 +13,11 @@ import { DataSource }                            from '@angular/cdk/collections'
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
 
-// models
+// app
+import { AuthService }                           from '../../auth/auth.service';
 import { Income }                                from '../../models/income';
-
-// pipes
 import { ReversePipe }                           from '../../pipes/reverse/reverse.pipe';
+import { CategoriesComponent as IncomeDialog }   from '../../layouts/categories/categories.component';
 
 @Component({
     selector: 'app-income',
@@ -27,16 +28,24 @@ export class IncomeComponent implements OnInit {
 
     //allIncome$: Income[];
     incomeForm: FormGroup;
+    incomeUser: string;
 
     //busySorting: boolean = false;
+    //IncomeDialog: CategoriesComponent;
     categories = ["Rent", "Cell Towers", "Sales"];
 
     displayedColumns = ["invoice", "date", "category", "description", "vattable", "amount", "vat", "net"];
     dataSource: IncomeDataSource;
 
-    constructor(private fb: FormBuilder, private afo: AngularFireOfflineDatabase) {
+    constructor(
+        private fb: FormBuilder, 
+        private afo: AngularFireOfflineDatabase, 
+        private authService: AuthService,
+        public dialog: MdDialog 
+    ) {
         //this.income = this.createIncome();
         this.incomeForm = this.createForm();
+        this.incomeUser = "/"+this.authService.id+"/income";
     }
 
     ngOnInit() {
@@ -57,7 +66,7 @@ export class IncomeComponent implements OnInit {
     }
 
     findAllIncome(): Observable<Income[]> {
-        return this.afo.list('/income');
+        return this.afo.list(this.incomeUser);
     }
 
     createForm(){
@@ -92,13 +101,21 @@ export class IncomeComponent implements OnInit {
         console.log(formData);
 
         // Then we add an item to the list, before it gets reversed again in the html
-        let key = this.afo.list('/income').push(formData).key;
+        let key = this.afo.list(this.incomeUser).push(formData).key;
 
         //console.log(key);
         //console.log(this.db.object('/income/' + key));
         //return this.db.object('/income/' + key);
         //this.busySorting = false;
     }
+
+    openDialog() {
+    this.dialog.open(IncomeDialog, {
+      data: {
+        
+      }
+    });
+  }
 
 }
 
@@ -109,14 +126,14 @@ export class IncomeComponent implements OnInit {
  * we return a stream that contains only one set of data that doesn't change.
  */
 export class IncomeDataSource extends DataSource<any> {
-    
+
     constructor(public data: Income[]) {
         super();
     }
-    
-    /** 
-     * Connect function called by the table 
-     * to retrieve one stream containing the data to render. 
+
+    /**
+     * Connect function called by the table
+     * to retrieve one stream containing the data to render.
      */
     connect(): Observable<Income[]> {
         return Observable.of(this.data);

@@ -10,12 +10,15 @@ import { VatComponent }      from './pages/vat/vat.component';
 import { TaxComponent }      from './pages/tax/tax.component';
 import { ContactComponent }  from './pages/contact/contact.component';
 
+// services
+import { AuthGuard }          from "./auth/auth.service";
+
 export const APP_ROUTES: Routes = [
     { path: '', component: HomeComponent, pathMatch: 'full' },
-    { path: 'income', component: IncomeComponent },
-    { path: 'expenses', component: ExpensesComponent },
-    { path: 'stock', component: StockComponent },
-    { path: 'vat', component: VatComponent },
-    { path: 'tax', component: TaxComponent },
+    { path: 'income', component: IncomeComponent, canActivate: [AuthGuard] },
+    { path: 'expenses', component: ExpensesComponent, canActivate: [AuthGuard] },
+    { path: 'stock', component: StockComponent, canActivate: [AuthGuard] },
+    { path: 'vat', component: VatComponent, canActivate: [AuthGuard] },
+    { path: 'tax', component: TaxComponent, canActivate: [AuthGuard] },
     { path: 'contact', component: ContactComponent },
 ];

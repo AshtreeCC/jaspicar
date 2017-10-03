@@ -21,6 +21,9 @@ export class EmailComponent implements OnInit {
     state: string = '';
     error: any;
 
+    email: string;
+    password: string;
+
     constructor(public afAuth: AngularFireAuth, private router: Router) {
         //this.afAuth.auth.subscribe((auth) => {
             if (this.afAuth.authState) {
