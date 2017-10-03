@@ -3,17 +3,57 @@ button {
     min-width: 58px;
 }
 
+.form-container {
+    padding: 2em;
+    max-width: none;
+}
+
+.income-header {
+    margin-top: 0;
+}
+
 .income-form {
     border: 1px solid #CCC;
+    background-color: #AAA;
     margin-bottom: 20px;
     padding: 10px;
+
+    .input-select-wrapper {
+        white-space:nowrap;
+
+        .mat-select:focus ~ span .add-category-button-underline {
+            height: 2px;
+            margin-top: -6px;
+            background-color: #C2185B;
+        }
+
+        .add-category-button {
+            width: auto;
+            min-width: 0;
+            padding-left:5px;
+            margin-right: 4px;
+
+            .add-category-button-underline {
+                display: flex;
+                width: 160%;
+                height: 1px;
+                background-color: rgba(255,255,255,0.7);
+                margin-top: -5px;
+                margin-left: -10px;
+
+                &.add-category-button-invalid {
+                    background-color: #F44336;
+                }
+            }
+        }
+    }
 }
 
 .income-table {
     display: flex;
     flex-direction: column;
     min-width: 530px;
-    
+
     .number {
         text-align: right;
     }
@@ -36,20 +76,20 @@ button {
     .mat-sort-header-container {
         float:left;
     }
-    
-    .number, 
+
+    .number,
     .center {
         .mat-sort-header-container {
-            padding-left:20px;
+            padding-left:30px;
         }
     }
 
-/*
+
     .mat-input-placeholder,
     .mat-select-placeholder {
-        color: #333 !important;
+        color: #FFF !important;
     }
-
+    /*
     .mat-select-underline,
     .mat-form-field-underline {
         background-color: #333;
@@ -58,7 +98,7 @@ button {
     .mat-raised-button[disabled] {
         background-color: #DDD;
     }
-*/
+     */
     .mat-row {
         background-color: #FFF;
     }

@@ -1,6 +1,6 @@
 <md-toolbar class="flex-container header" color="accent">
     <span *ngIf="!(auth$ | async)" class="login link flex-item">
-        <small><a routerLink="/login" (click)='sidenavClose()'>Login</a></small>
+        <small><a routerLink="/login" (click)='sidenavClose($event)'>Login</a></small>
     </span>
     
     <span *ngIf="(auth$ | async)" class="logout link flex-item">
@@ -18,35 +18,35 @@
 <div class="flex-container sidenav-content">
 
     <md-nav-list>
-        <a md-list-item (click)="sidenavClose()" routerLink="/">
+        <a md-list-item (click)="sidenavClose($event)" routerLink="/">
             <md-icon md-list-icon>home</md-icon>
             <span md-line>Home</span>
         </a>
 
         <hr />
-        <a md-list-item (click)="sidenavClose()" routerLink="/income">
+        <a md-list-item (click)="sidenavClose($event)" routerLink="/income">
             <md-icon md-list-icon>trending_up</md-icon>
             <span md-line>Income</span>
         </a>
-        <a md-list-item (click)="sidenavClose()" routerLink="/expenses">
+        <a md-list-item (click)="sidenavClose($event)" routerLink="/expenses">
             <md-icon md-list-icon>trending_down</md-icon>
             <span md-line>Expenses</span>
         </a>
-        <a md-list-item (click)="sidenavClose()" routerLink="/stock">
+        <a md-list-item (click)="sidenavClose($event)" routerLink="/stock">
             <md-icon md-list-icon>pets</md-icon>
             <span md-line>Stock</span>
         </a>
-        <a md-list-item (click)="sidenavClose()" routerLink="/vat">
+        <a md-list-item (click)="sidenavClose($event)" routerLink="/vat">
             <md-icon md-list-icon>store</md-icon>
             <span md-line>VAT</span>
         </a>
-        <a md-list-item (click)="sidenavClose()" routerLink="/tax">
+        <a md-list-item (click)="sidenavClose($event)" routerLink="/tax">
             <md-icon md-list-icon>account_balance</md-icon>
             <span md-line>TAX</span>
         </a>
 
         <hr />
-        <a md-list-item (click)="sidenavClose()" routerLink="/contact">
+        <a md-list-item (click)="sidenavClose($event)" routerLink="/contact">
             <md-icon md-list-icon>person</md-icon>
             <span md-line>Contact</span>
         </a>

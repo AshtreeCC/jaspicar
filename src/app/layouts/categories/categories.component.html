@@ -1,0 +1,9 @@
+<!--<form class="category-form mat-elevation-z8" (submit)="createCategory()">-->
+    <md-form-field>
+        <input mdInput placeholder="New category" [(ngModel)]="category" (keyup.enter)="createCategory()">
+    </md-form-field>
+    <!--</form>-->
+
+<div *ngFor="let cat of data.categories; let i=index">
+    <input mdInput [(ngModel)]="data.categories[i].title" (keyup.enter)="updateCategory(i)">
+</div>

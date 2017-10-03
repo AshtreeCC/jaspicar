@@ -1,22 +1,23 @@
 // angular
 import { Component, OnInit }                     from '@angular/core';
-import { MatInputModule, MatDatepickerModule }   from '@angular/material';
+//import { MdInput, MdDatepicker }     from '@angular/material';
 import { FormBuilder, FormGroup, Validators }    from '@angular/forms';
+import { DataSource }                            from '@angular/cdk/collections';
+import { MdDialog }                              from '@angular/material';
 
 // libraries
 import { AngularFireDatabase }                   from 'angularfire2/database';
 import { AngularFireOfflineDatabase }            from 'angularfire2-offline';
 //import { FirebaseObjectObservable }              from 'angularfire2/database';
 import { Observable }                            from 'rxjs/Observable';
-import { DataSource }                            from '@angular/cdk/collections';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
 
-// models
+// app
+import { AuthService }                           from '../../auth/auth.service';
 import { Income }                                from '../../models/income';
-
-// pipes
 import { ReversePipe }                           from '../../pipes/reverse/reverse.pipe';
+import { CategoriesComponent as IncomeDialog }   from '../../layouts/categories/categories.component';
 
 @Component({
     selector: 'app-income',
@@ -27,44 +28,71 @@ export class IncomeComponent implements OnInit {
 
     //allIncome$: Income[];
     incomeForm: FormGroup;
+    incomeData: string;
+    incomeCategories: string;
 
     //busySorting: boolean = false;
-    categories = ["Rent", "Cell Towers", "Sales"];
+    //IncomeDialog: CategoriesComponent;
+    categories = [];
+    simpleCats = [];
 
     displayedColumns = ["invoice", "date", "category", "description", "vattable", "amount", "vat", "net"];
     dataSource: IncomeDataSource;
 
-    constructor(private fb: FormBuilder, private afo: AngularFireOfflineDatabase) {
+    constructor(
+        private fb: FormBuilder, 
+        private afo: AngularFireOfflineDatabase, 
+        private authService: AuthService,
+        public dialog: MdDialog 
+    ) {
         //this.income = this.createIncome();
         this.incomeForm = this.createForm();
+        this.incomeData = "/"+this.authService.id+"/income/data";
+        this.incomeCategories = "/"+this.authService.id+"/income/categories";
     }
 
     ngOnInit() {
         // Find all the income figures
         // @TODO Filter these on active year
-        this.findAllIncome()
-            .subscribe(income => {
-                //this.allIncome$ = income;
-                for(let i = 0; i < income.length; i++) {
-                    let item = income[i];
-                    //let amount = Number(income[i].amount);
-                    income[i].auto_net = (item.vat == "Incl.") ? (item.amount/114*100).toFixed(2) : item.amount;
-                    income[i].auto_vat = (item.amount - item.auto_net).toFixed(2);
-                }
-                this.dataSource = new IncomeDataSource(income.reverse());
-                //console.log(income);
+        this.findAllIncome().subscribe(income => {
+            //this.allIncome$ = income;
+            for(let i = 0; i < income.length; i++) {
+                let item = income[i];
+                //let amount = Number(income[i].amount);
+                income[i].auto_net = (item.vat == "Incl.") ? (item.amount/114*100).toFixed(2) : item.amount;
+                income[i].auto_vat = (item.amount - item.auto_net).toFixed(2);
+            }
+            this.dataSource = new IncomeDataSource(income.reverse());
+            //console.log(income);
+        });
+
+        this.findAllCategories().subscribe(cat => {
+            this.categories = cat;
+            cat.map(val => {
+                this.simpleCats[val.$key] = val.title;
             });
+            //console.log(this.simpleCats);
+        })
+
+    }
+
+    findAllCategories(): Observable<any[]> {
+        return this.afo.list(this.incomeCategories, {
+            query: {
+                orderByChild: 'title'
+            }
+        });
     }
 
     findAllIncome(): Observable<Income[]> {
-        return this.afo.list('/income');
+        return this.afo.list(this.incomeData);
     }
 
     createForm(){
         return this.fb.group({
             invoice     : ['', Validators.required],
             date        : ['', Validators.required],
-            category    : ['', Validators.required],
+            category_id : ['', Validators.required],
             description : [''],
             vat         : ['', Validators.required],
             amount      : ['', [Validators.required, Validators.pattern(/^\d+(\.\d)?\d?$/)]]
@@ -92,13 +120,22 @@ export class IncomeComponent implements OnInit {
         console.log(formData);
 
         // Then we add an item to the list, before it gets reversed again in the html
-        let key = this.afo.list('/income').push(formData).key;
+        let key = this.afo.list(this.incomeData).push(formData).key;
 
         //console.log(key);
         //console.log(this.db.object('/income/' + key));
         //return this.db.object('/income/' + key);
         //this.busySorting = false;
     }
+
+    openDialog() {
+    this.dialog.open(IncomeDialog, {
+        "data": { 
+            "location" : this.incomeCategories, 
+            "categories" : this.categories
+        }
+    });
+  }
 
 }
 
@@ -109,14 +146,14 @@ export class IncomeComponent implements OnInit {
  * we return a stream that contains only one set of data that doesn't change.
  */
 export class IncomeDataSource extends DataSource<any> {
-    
+
     constructor(public data: Income[]) {
         super();
     }
-    
-    /** 
-     * Connect function called by the table 
-     * to retrieve one stream containing the data to render. 
+
+    /**
+     * Connect function called by the table
+     * to retrieve one stream containing the data to render.
      */
     connect(): Observable<Income[]> {
         return Observable.of(this.data);
