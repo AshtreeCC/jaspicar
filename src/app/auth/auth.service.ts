@@ -28,12 +28,18 @@ export class AuthService implements OnDestroy {
     private _nameS: Subscription;
     private _onlineS: Subscription;
 
-    private _name: Subject<string> = new BehaviorSubject<string>("Stranger");
+    private _name: Subject<string> = new BehaviorSubject<string>("Anonymous");
 
     constructor(private snackBar: MdSnackBar, private afAuth: AngularFireAuth, private router: Router) {
 
         this.initDisplayNameObservable();
         this.initOfflineSnackBarMessage();
+
+        this.afAuth.authState.subscribe(user => {
+            if (user) {
+                this._user = user;
+            }
+        });
 
     }
 
@@ -46,7 +52,7 @@ export class AuthService implements OnDestroy {
     }
 
     get id(): string {
-        return this._user.auth.uid;
+        return this._user.uid;
     }
 
     get token(): string {
@@ -88,7 +94,7 @@ export class AuthService implements OnDestroy {
     }
 
     logout(): firebase.Promise<any> {
-        this._name.next("Stranger");
+        this._name.next("Anonymous");
         this.router.navigate(['/login']);
 
         return this.afAuth.auth.signOut();

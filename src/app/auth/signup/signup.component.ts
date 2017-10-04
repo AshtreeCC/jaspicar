@@ -21,6 +21,9 @@ export class SignupComponent implements OnInit {
     state: string = '';
     error: any;
 
+    email: string;
+    password: string;
+
     /**
      *
      */

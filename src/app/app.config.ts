@@ -1,9 +1,9 @@
 export const FIREBASE_CONFIG = {
-    apiKey: "AIzaSyDEPfsTs_--SXVv7QQ_kpm_29lm6i8kPJo",
-    authDomain: "ng-af-pwa-seed.firebaseapp.com",
-    databaseURL: "https://ng-af-pwa-seed.firebaseio.com",
-    projectId: "ng-af-pwa-seed",
-    storageBucket: "ng-af-pwa-seed.appspot.com",
-    messagingSenderId: "581654671290"
+    apiKey: "AIzaSyBgQsIrATCK6Vrbk1JqR-LlNbap8wdnJ38",
+    authDomain: "jaspicar.firebaseapp.com",
+    databaseURL: "https://jaspicar.firebaseio.com",
+    projectId: "jaspicar",
+    storageBucket: "jaspicar.appspot.com",
+    messagingSenderId: "551698323618"
 }
 

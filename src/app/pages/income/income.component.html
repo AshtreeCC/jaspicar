@@ -1,0 +1,123 @@
+<div class="form-container">
+    <h2 class="income-header">Record any Income</h2>
+
+    <form [formGroup]="incomeForm" class="income-form mat-elevation-z8" novalidate>
+        <div class="form-group">
+            <md-form-field>
+                <input mdInput placeholder="Invoice #" formControlName="invoice">
+                <md-error *ngIf="incomeForm.controls['invoice'].errors?.required">
+                    An invoice number is required
+                </md-error>
+            </md-form-field>
+            <md-form-field>
+                <input mdInput [mdDatepicker]="picker" placeholder="Pick a date" formControlName="date">
+                <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
+                <md-datepicker #picker></md-datepicker>
+                <md-error *ngIf="incomeForm.controls['date'].errors?.required">
+                    A date is required
+                </md-error>
+            </md-form-field>
+            <!--<md-form-field>-->
+            <span class="input-select-wrapper">
+                <md-select class="input-select" placeholder="Select a category" formControlName="category_id">
+                    <md-option *ngFor="let cat of categories" [value]="cat.$key">{{ cat.title }}</md-option>
+                </md-select>
+                <span mdSuffix>
+                    <button class="add-category-button" md-icon-button color="black" (click)="openDialog()">
+                        <md-icon class="md-14" aria-label="">playlist_add</md-icon>
+                        <span class="add-category-button-underline" [class.add-category-button-invalid]="incomeForm.controls['category_id'].touched && !incomeForm.controls['category_id'].dirty"></span>
+                    </button>
+                </span>
+            </span>
+            <!--</md-form-field>-->
+            <md-form-field>
+                <input mdInput placeholder="Description" formControlName="description">
+                <md-hint class="alert alert-danger" *ngIf="incomeForm.controls['description'].dirty || incomeForm.controls['description'].touched">
+                    A description is recommended
+                </md-hint>
+            </md-form-field>
+            <!--<md-form-field>-->
+                <md-select class="input-select" placeholder="VAT" formControlName="vat">
+                    <md-option value="Incl."> Incl. </md-option>
+                    <md-option value="Excl."> Excl. </md-option>
+                </md-select>
+            <!--</md-form-field>-->
+            <md-form-field>
+                <span mdPrefix>R &nbsp;</span>
+                <input mdInput placeholder="0.00" formControlName="amount">
+                <md-error *ngIf="incomeForm.controls['amount'].errors?.required">
+                    Enter an amount in Rands
+                </md-error>
+                <md-error *ngIf="incomeForm.controls['amount'].errors?.pattern">
+                    Enter the number only
+                </md-error>
+            </md-form-field>
+            <button md-raised-button color="accent" type="reset" (click)="createIncome()" [disabled]="!incomeForm.valid">
+                <md-icon class="md-24" aria-label="">add</md-icon>
+             </button>
+        </div>
+    </form>
+
+    <!--
+    <p>Form value: {{ incomeForm.value | json }}</p>
+    <p>Form status: {{ incomeForm.status | json }}</p>
+    -->
+
+    <!--
+    <div *ngIf="!busySorting">
+        <table class="income-table">
+            <tbody *ngFor="let income of allIncome$  | reverse">
+                <app-row [item]="income"></app-row> 
+            </tbody>
+        </table>
+    </div>
+    -->
+
+    <div class="income-table mat-elevation-z8">
+        <md-table #table [dataSource]="dataSource" mdSort>
+            
+            <ng-container mdColumnDef="invoice">
+                <md-header-cell *mdHeaderCellDef md-sort-header> Invoice # </md-header-cell>
+                <md-cell *mdCellDef="let item"> {{ item.invoice }} </md-cell>
+            </ng-container>
+
+            <ng-container mdColumnDef="date">
+                <md-header-cell *mdHeaderCellDef md-sort-header> Date </md-header-cell>
+                <md-cell *mdCellDef="let item"> {{ item.date | date:'dd MMM y' }} </md-cell>
+            </ng-container>
+            
+            <ng-container mdColumnDef="category">
+                <md-header-cell *mdHeaderCellDef md-sort-header> Category </md-header-cell>
+                <md-cell *mdCellDef="let item"> {{ simpleCats[item.category_id] }} </md-cell>
+            </ng-container>
+
+            <ng-container mdColumnDef="description">
+                <md-header-cell *mdHeaderCellDef md-sort-header> Description </md-header-cell>
+                <md-cell *mdCellDef="let item"> {{ item.description }} </md-cell>
+            </ng-container>
+
+            <ng-container mdColumnDef="vattable">
+                <md-header-cell *mdHeaderCellDef md-sort-header class="center"> VAT </md-header-cell>
+                <md-cell *mdCellDef="let item" class="center"> {{ item.vat }} </md-cell>
+            </ng-container>
+
+            <ng-container mdColumnDef="amount">
+                <md-header-cell *mdHeaderCellDef md-sort-header class="number"> Amount </md-header-cell>
+                <md-cell *mdCellDef="let item" class="number"> R {{ item.amount }} </md-cell>
+            </ng-container>
+            
+            <ng-container mdColumnDef="vat">
+                <md-header-cell *mdHeaderCellDef md-sort-header class="number"> VAT </md-header-cell>
+                <md-cell *mdCellDef="let item" class="number"> R {{ item.auto_vat }} </md-cell>
+            </ng-container>
+            
+            <ng-container mdColumnDef="net">
+                <md-header-cell *mdHeaderCellDef md-sort-header class="number"> NET </md-header-cell>
+                <md-cell *mdCellDef="let item" class="number"> R {{ item.auto_net }} </md-cell>
+            </ng-container>
+            
+            <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
+            <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
+        </md-table>
+    </div>
+</div> 
