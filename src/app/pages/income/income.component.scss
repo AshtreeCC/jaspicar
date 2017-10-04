@@ -69,6 +69,10 @@ button {
 
 :host/deep/ {
 
+    .mat-select {
+        padding-bottom: 20px;
+    }
+    
     .mat-select-trigger {
         height: 32px !important;
     }
