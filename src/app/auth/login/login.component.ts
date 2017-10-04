@@ -1,14 +1,14 @@
 // angular
-import { Component, OnInit }            from '@angular/core';
-import { HostBinding }                  from '@angular/core';
-import { Router }                       from '@angular/router';
+import { Component, OnInit }      from '@angular/core';
+//import { HostBinding }            from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 // libraries
-import { AngularFireAuth }              from 'angularfire2/auth';
-import * as firebase                    from 'firebase/app';
+import { AngularFireAuth }        from 'angularfire2/auth';
+import * as firebase              from 'firebase/app';
 
 // app
-//import { moveIn }                       from '../../router.animations';
+//import { moveIn }                 from '../../router.animations';
 
 @Component({
     selector: 'app-login',
@@ -20,19 +20,31 @@ import * as firebase                    from 'firebase/app';
 export class LoginComponent implements OnInit {
 
     error: any;
+    loading = false;
+    returnUrl: string;
 
     /**
      *
      */
-    constructor(public afAuth: AngularFireAuth, private router: Router) {
-        //this.afAuth.auth.subscribe(auth => {
-        //    if (auth) {
-        //        this.router.navigateByUrl('/user');
-        //    } 
-        //});
-        if (this.afAuth.authState) {
-            this.router.navigateByUrl('/user');
-        }
+    constructor(
+        public afAuth: AngularFireAuth, 
+        private router: Router, 
+        private route: ActivatedRoute
+    ) {  }
+    
+    /**
+     *
+     */
+    ngOnInit() {
+        //if (this.afAuth.authState) {
+        //    this.router.navigateByUrl('/user');
+        //}
+        
+        // Reset the login status
+        this.afAuth.auth.signOut();
+
+        // Get return url from route parameters or default to the user profile
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/user';
     }
 
     /**
@@ -40,12 +52,14 @@ export class LoginComponent implements OnInit {
      * @SET this.error
      */
     loginFacebook() {
+        this.loading = true;
         this.afAuth.auth.signInWithPopup(
             new firebase.auth.FacebookAuthProvider()
         ).then((success) => {
-            this.router.navigate(['/user']);
+            this.router.navigate([this.returnUrl]);
         }).catch((err) => {
             this.error = err;
+            this.loading = false;
         });
     }
     
@@ -54,19 +68,15 @@ export class LoginComponent implements OnInit {
      *  @SET this.error
      */
     loginGoogle() {
+        this.loading = true;
         this.afAuth.auth.signInWithPopup(
             new firebase.auth.GoogleAuthProvider()
         ).then((success) => {
-            this.router.navigate(['/user']);
+            this.router.navigate([this.returnUrl]);
         }).catch((err) => {
             this.error = err;
+            this.loading = false;
         });
-    }
-
-    /**
-     *
-     */
-    ngOnInit() {
     }
 
 }

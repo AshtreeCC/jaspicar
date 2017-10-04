@@ -36,7 +36,16 @@ export class IncomeComponent implements OnInit {
     categories = [];
     simpleCats = [];
 
-    displayedColumns = ["invoice", "date", "category", "description", "vattable", "amount", "vat", "net"];
+    displayedColumns = [
+        "invoice", 
+        "date", 
+        "category", 
+        "description", 
+        "vattable", 
+        "amount", 
+        "vat", 
+        "net"
+    ];
     dataSource: IncomeDataSource;
 
     constructor(

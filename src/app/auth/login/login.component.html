@@ -1,6 +1,11 @@
 <div class="form-container">
-    <img id="lock" src="/assets/images/lock.svg" alt="">
-    
+    <span *ngIf="!loading">
+        <img id="lock" src="/assets/images/lock.svg" alt="">
+    </span>
+    <span *ngIf="loading">
+        <md-spinner mode="indeterminate"></md-spinner>
+    </span>
+
     <!--<span class="error" *ngIf="error" [@fallIn]="state">{{ error }}</span>-->
     <span class="error" *ngIf="error">{{ error }}</span>
     
