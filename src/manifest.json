@@ -1,7 +1,7 @@
 {
-    "short_name": "Ng-Af-PWA-Seed",
-    "name": "Seed",
-    "description": "Angular2 Firebase Progressive Web App seed",
+    "short_name": "JASPICAR",
+    "name": "JASPICAR",
+    "description": "SME VAT & TAX",
     "icons": [{
         "src": "assets/touch/icon-128x128.png",
         "type": "image/png",
@@ -21,7 +21,7 @@
     }],
     "start_url": "/?utm_source=homescreen",
     "background_color": "#FFF",
-    "theme_color": "##673AB7",
+    "theme_color": "#FF4081",
     "display": "standalone",
     "orientation": "fullSensor"
 }
