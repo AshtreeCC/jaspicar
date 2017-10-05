@@ -20,7 +20,6 @@ import { StaticLog as LOG }                     from "system/static-log";
 
 import * as firebase from 'firebase/app';
 
-
 @Injectable()
 export class AuthService implements OnDestroy {
 
